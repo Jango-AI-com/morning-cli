@@ -1,0 +1,49 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.whl
+
+# --- Virtualenvs ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Packaging ---
+*.egg-link
+pip-wheel-metadata/
+
+# --- Editors / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# --- Claude Code / agent tooling ---
+.claude/
+.cursorrules
+CLAUDE.md
+
+# --- Credentials — NEVER commit ---
+.env
+.env.local
+.env.*.local
+credentials.json
+*.pem
+*.key
+.greeninvoice/
+
+# --- Third-party API spec (re-downloaded from Apiary on demand) ---
+# We ship our derived spec/api-map.json + spec/api-description.html
+# but NOT the raw 1.4MB Apiary dumps. Re-fetch with scripts/extract_api_map.py
+spec/greeninvoice.apib
+spec/greeninvoice.api-elements.json

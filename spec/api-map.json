@@ -1,0 +1,1472 @@
+{
+  "name": "morning by Green Invoice API",
+  "subdomain": "greeninvoice",
+  "last_updated": "2026-03-11T10:43:35.789Z",
+  "base_url": "https://api.greeninvoice.co.il/api/v1/",
+  "mock_url": "https://private-anon-eb219b8df8-greeninvoice.apiary-mock.com/api/v1/",
+  "data_structures": [
+    "Currency",
+    "PaidCurrency",
+    "CountryObject",
+    "Country",
+    "Alpha3Code",
+    "DocumentType",
+    "ExpenseDocumentType",
+    "PaymentSearchDocumentType",
+    "PaidDocumentType",
+    "DocumentStatus",
+    "ExpenseStatus",
+    "ExpenseDraftStatus",
+    "PaymentStatus",
+    "TemplateType",
+    "Lang",
+    "PaymentGroup",
+    "AddExpensePaymentType",
+    "PaymentTerm",
+    "CreditCardType",
+    "CreditCardDealType",
+    "PaymentAppType",
+    "OtherSubType",
+    "EmailReportFrequency",
+    "ReportType",
+    "EmailSenderSetting",
+    "DocumentsEmailSettings",
+    "EmailSubjectType",
+    "AccountingType",
+    "DocumentVatType",
+    "ItemVatType",
+    "DocumentDefaultEncoding",
+    "BusinessType",
+    "BusinessCategory",
+    "BusinessSubCategory",
+    "FileTypes",
+    "PluginType",
+    "PaymentPluginGroup",
+    "PaymentPluginGroupDP",
+    "IncomeRow",
+    "PaymentRow",
+    "DocumentPaymentRow",
+    "IncomeRowRequest",
+    "MinimalIncomeRowRequest",
+    "PaymentRowRequest",
+    "Me",
+    "Business",
+    "SearchClient",
+    "Client",
+    "SearchSupplier",
+    "Supplier",
+    "Item",
+    "PartnerUser",
+    "AccountingClassification",
+    "PartnerKey",
+    "LinkedDocument",
+    "SearchDocument",
+    "DocumentPayment",
+    "Document",
+    "Expense",
+    "ExpenseData",
+    "ExpensesSearchItem",
+    "AddExpenseDto",
+    "ExpenseDraft",
+    "ExpenseDraftSearch",
+    "Plugin",
+    "TemplateSkin"
+  ],
+  "groups": [
+    {
+      "name": "Authentication",
+      "description": "<h2>Obtain Access Token</h2>\n<blockquote>\n<p><strong>Note:</strong> The instructions for obtaining an Access Token have been moved to a separate guide.</p>\n</blockquote>\n<p>To obtain an <code>Access Token</code>, follow the documentation here:</p>\n<p><strong><a href=\"https://developers.morning.co\">Obtaining An Access Token Guide</a></strong></p>\n<p>This guide contains the complete and up-to-date instructions for creating and managing Access Tokens.</p>",
+      "resources": []
+    },
+    {
+      "name": "Businesses",
+      "description": "<p>Businesses are a main component of Green Invoice system.</p>\n<p>Each business contains it's own documents, clients, items &amp; settings.</p>",
+      "resources": [
+        {
+          "name": "Basic Business Actions",
+          "uri_template": "/businesses",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get All User Businesses",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n    \"logo\": \"https://cdn.example.com/84f1892a225dbae47d019e999f4be2b5.png\",\n    \"type\": 1,\n    \"taxId\": \"123456789\",\n    \"name\": \"עסק לדוגמה\",\n    \"nameEn\": \"Sample Business\",\n    \"title\": \"כותרת לעסק\",\n    \"titleEn\": \"Just a title\",\n    \"category\": 16,\n    \"subCategory\": 1602,\n    \"address\": \"רחוב סוקולוב 15\",\n    \"addressEn\": \"15 Sokolov St.\",\n    \"city\": \"תל אביב-יפו\",\n    \"cityEn\": \"Tel Aviv\",\n    \"cityId\": 5000,\n    \"zip\": \"6291790\",\n    \"phone\": \"054-1234567\",\n    \"fax\": \"054-1234567\",\n    \"mobile\": \"054-1234567\",\n    \"website\": \"https://www.greeninvoice.co.il\",\n    \"email\": \"john@gmail.com\",\n    \"templateId\": 1,\n    \"skinId\": 1,\n    \"signature\": \"https://signature-url\",\n    \"bankDisplay\": false,\n    \"bankDisplayEn\": false,\n    \"bankName\": \"לאומי\",\n    \"bankBranch\": \"44\",\n    \"bankAccount\": \"565656565656\",\n    \"bankSwift\": \"FIRBILIT\",\n    \"bankAba\": \"04064927\",\n    \"bankIban\": \"IL170108000000012612345\",\n    \"bankBeneficiary\": \"יעקב כהן\",\n    \"bankNameEn\": \"Leumi\",\n    \"bankBranchEn\": \"44\",\n    \"bankAccountEn\": \"565656565656\",\n    \"bankSwiftEn\": \"FIRBILIT\",\n    \"bankAbaEn\": \"04064927\",\n    \"bankIbanEn\": \"IL170108000000012612345\",\n    \"bankBeneficiaryEn\": \"John Doe\",\n    \"creationDate\": 1503563534,\n    \"lastUpdateDate\": 1503563534,\n    \"exemption\": false,\n    \"notifyEmail\": \"john@gmail.com\",\n    \"deductionDoc\": \"https://deduction-url\",\n    \"bookkeepingDoc\": \"https://bookkeeping-url\",\n    \"accountantEmails\": [],\n    \"accountantDocsEmailSettings\": 0,\n    \"accountantReportEmailSettings\": 0,\n    \"senderEmailSettings\": \"1\",\n    \"documentsEmailSettings\": 1,\n    \"incomeReportEmailSettings\": 0,\n    \"incomeReportFormatType\": 1,\n    \"emailSubjectType\": \"1\",\n    \"accountingType\": \"0\",\n    \"deductionId\": 0,\n    \"deductionRate\": 0,\n    \"advanceTaxRate\": 0,\n    \"advanceNationalInsuranceRate\": 0,\n    \"active\": true,\n    \"accountEmail\": \"example@email.com\",\n    \"documentCount\": 54,\n    \"settings\": {\n      \"documentCurrency…"
+            },
+            {
+              "method": "PUT",
+              "name": "Update Business",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"title\": \"כותרת לעסק\",\n  \"titleEn\": \"Just a title\",\n  \"category\": 1,\n  \"subCategory\": 101,\n  \"address\": \"רחוב סוקולוב 15\",\n  \"addressEn\": \"15 Sokolov St.\",\n  \"city\": \"תל אביב-יפו\",\n  \"cityEn\": \"Tel Aviv\",\n  \"cityId\": 5000,\n  \"zip\": \"6291790\",\n  \"phone\": \"054-1234567\",\n  \"fax\": \"054-1234567\",\n  \"mobile\": \"054-1234567\",\n  \"website\": \"https://www.greeninvoice.co.il\",\n  \"email\": \"john@gmail.com\",\n  \"templateId\": 1,\n  \"skinId\": 1,\n  \"bankDisplay\": false,\n  \"bankDisplayEn\": false,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"bankSwift\": \"FIRBILIT\",\n  \"bankAba\": \"04064927\",\n  \"bankIban\": \"IL170108000000012612345\",\n  \"bankBeneficiary\": \"יעקב כהן\",\n  \"bankNameEn\": \"Leumi\",\n  \"bankBranchEn\": \"44\",\n  \"bankAccountEn\": \"565656565656\",\n  \"bankSwiftEn\": \"FIRBILIT\",\n  \"bankAbaEn\": \"04064927\",\n  \"bankIbanEn\": \"IL170108000000012612345\",\n  \"bankBeneficiaryEn\": \"John Doe\",\n  \"deductionDoc\": \"https://anyurl.com/file.pdf\",\n  \"bookkeepingDoc\": \"https://anyurl.com/file.pdf\",\n  \"accountantEmails\": [],\n  \"accountantDocsEmailSettings\": 0,\n  \"accountantReportEmailSettings\": 0,\n  \"senderEmailSettings\": \"1\",\n  \"documentsEmailSettings\": 1,\n  \"incomeReportEmailSettings\": 0,\n  \"incomeReportFormatType\": 1,\n  \"emailSubjectType\": 1,\n  \"accountingType\": \"0\",\n  \"deductionId\": 0,\n  \"deductionRate\": 0,\n  \"active\": true,\n  \"accountEmail\": \"example@email.com\",\n  \"documentCount\": 54,\n  \"settings\": {\n    \"documentCurrency\": \"ILS\",\n    \"documentLang\": \"he\",\n    \"documentRounding\": false,\n    \"documentVatType\": 0,\n    \"rowVatType\": 0,\n    \"mixedVatEnabled\": false,\n    \"unsignedEnabled\": false,\n    \"attachmentEnabled\": false,\n    \"depositDocumentsEnabled\": false,\n    \"encoding\": \"auto\",\n    \"showForeignAddress\": true,\n    \"foundationDate\": \"2015-01-13\"\n  },\n  \"footerTextHe\": \"This is the Hebrew footer that will show\",\n  \"footerTextEn\": \"This is the English footer that will show\"\n}",
+              "response_body_sample": "{\n  \"id\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n  \"logo\": \"https://cdn.example.com/84f1892a225dbae47d019e999f4be2b5.png\",\n  \"type\": 1,\n  \"taxId\": \"123456789\",\n  \"name\": \"עסק לדוגמה\",\n  \"nameEn\": \"Sample Business\",\n  \"title\": \"כותרת לעסק\",\n  \"titleEn\": \"Just a title\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"address\": \"רחוב סוקולוב 15\",\n  \"addressEn\": \"15 Sokolov St.\",\n  \"city\": \"תל אביב-יפו\",\n  \"cityEn\": \"Tel Aviv\",\n  \"cityId\": 5000,\n  \"zip\": \"6291790\",\n  \"phone\": \"054-1234567\",\n  \"fax\": \"054-1234567\",\n  \"mobile\": \"054-1234567\",\n  \"website\": \"https://www.greeninvoice.co.il\",\n  \"email\": \"john@gmail.com\",\n  \"templateId\": 1,\n  \"skinId\": 1,\n  \"signature\": \"https://signature-url\",\n  \"bankDisplay\": false,\n  \"bankDisplayEn\": false,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"bankSwift\": \"FIRBILIT\",\n  \"bankAba\": \"04064927\",\n  \"bankIban\": \"IL170108000000012612345\",\n  \"bankBeneficiary\": \"יעקב כהן\",\n  \"bankNameEn\": \"Leumi\",\n  \"bankBranchEn\": \"44\",\n  \"bankAccountEn\": \"565656565656\",\n  \"bankSwiftEn\": \"FIRBILIT\",\n  \"bankAbaEn\": \"04064927\",\n  \"bankIbanEn\": \"IL170108000000012612345\",\n  \"bankBeneficiaryEn\": \"John Doe\",\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"exemption\": false,\n  \"notifyEmail\": \"john@gmail.com\",\n  \"deductionDoc\": \"https://deduction-url\",\n  \"bookkeepingDoc\": \"https://bookkeeping-url\",\n  \"accountantEmails\": [],\n  \"accountantDocsEmailSettings\": 0,\n  \"accountantReportEmailSettings\": 0,\n  \"senderEmailSettings\": \"1\",\n  \"documentsEmailSettings\": 1,\n  \"incomeReportEmailSettings\": 0,\n  \"incomeReportFormatType\": 1,\n  \"emailSubjectType\": \"1\",\n  \"accountingType\": \"0\",\n  \"deductionId\": 0,\n  \"deductionRate\": 0,\n  \"advanceTaxRate\": 0,\n  \"advanceNationalInsuranceRate\": 0,\n  \"active\": true,\n  \"accountEmail\": \"example@email.com\",\n  \"documentCount\": 54,\n  \"settings\": {\n    \"documentCurrency\": \"ILS\",\n    \"documentLang\": \"he\",\n    \"documentRounding\": false,\n    \"documentCopyCurrencyRates\": true,\n    \"documentVatType\": 0,…"
+            }
+          ]
+        },
+        {
+          "name": "Get Current Business",
+          "uri_template": "/businesses/me",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Current Business",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n  \"logo\": \"https://cdn.example.com/84f1892a225dbae47d019e999f4be2b5.png\",\n  \"type\": 1,\n  \"taxId\": \"123456789\",\n  \"name\": \"עסק לדוגמה\",\n  \"nameEn\": \"Sample Business\",\n  \"title\": \"כותרת לעסק\",\n  \"titleEn\": \"Just a title\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"address\": \"רחוב סוקולוב 15\",\n  \"addressEn\": \"15 Sokolov St.\",\n  \"city\": \"תל אביב-יפו\",\n  \"cityEn\": \"Tel Aviv\",\n  \"cityId\": 5000,\n  \"zip\": \"6291790\",\n  \"phone\": \"054-1234567\",\n  \"fax\": \"054-1234567\",\n  \"mobile\": \"054-1234567\",\n  \"website\": \"https://www.greeninvoice.co.il\",\n  \"email\": \"john@gmail.com\",\n  \"templateId\": 1,\n  \"skinId\": 1,\n  \"signature\": \"https://signature-url\",\n  \"bankDisplay\": false,\n  \"bankDisplayEn\": false,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"bankSwift\": \"FIRBILIT\",\n  \"bankAba\": \"04064927\",\n  \"bankIban\": \"IL170108000000012612345\",\n  \"bankBeneficiary\": \"יעקב כהן\",\n  \"bankNameEn\": \"Leumi\",\n  \"bankBranchEn\": \"44\",\n  \"bankAccountEn\": \"565656565656\",\n  \"bankSwiftEn\": \"FIRBILIT\",\n  \"bankAbaEn\": \"04064927\",\n  \"bankIbanEn\": \"IL170108000000012612345\",\n  \"bankBeneficiaryEn\": \"John Doe\",\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"exemption\": false,\n  \"notifyEmail\": \"john@gmail.com\",\n  \"deductionDoc\": \"https://deduction-url\",\n  \"bookkeepingDoc\": \"https://bookkeeping-url\",\n  \"accountantEmails\": [],\n  \"accountantDocsEmailSettings\": 0,\n  \"accountantReportEmailSettings\": 0,\n  \"senderEmailSettings\": \"1\",\n  \"documentsEmailSettings\": 1,\n  \"incomeReportEmailSettings\": 0,\n  \"incomeReportFormatType\": 1,\n  \"emailSubjectType\": \"1\",\n  \"accountingType\": \"0\",\n  \"deductionId\": 0,\n  \"deductionRate\": 0,\n  \"advanceTaxRate\": 0,\n  \"advanceNationalInsuranceRate\": 0,\n  \"active\": true,\n  \"accountEmail\": \"example@email.com\",\n  \"documentCount\": 54,\n  \"settings\": {\n    \"documentCurrency\": \"ILS\",\n    \"documentLang\": \"he\",\n    \"documentRounding\": false,\n    \"documentCopyCurrencyRates\": true,\n    \"documentVatType\": 0,…"
+            }
+          ]
+        },
+        {
+          "name": "Get Business By ID",
+          "uri_template": "/businesses/{id}",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The business id</p>",
+              "default": "",
+              "example": "da5d064b-aac7-fcb4-45e9-c1123b3899d2",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Business By ID",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n  \"logo\": \"https://cdn.example.com/84f1892a225dbae47d019e999f4be2b5.png\",\n  \"type\": 1,\n  \"taxId\": \"123456789\",\n  \"name\": \"עסק לדוגמה\",\n  \"nameEn\": \"Sample Business\",\n  \"title\": \"כותרת לעסק\",\n  \"titleEn\": \"Just a title\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"address\": \"רחוב סוקולוב 15\",\n  \"addressEn\": \"15 Sokolov St.\",\n  \"city\": \"תל אביב-יפו\",\n  \"cityEn\": \"Tel Aviv\",\n  \"cityId\": 5000,\n  \"zip\": \"6291790\",\n  \"phone\": \"054-1234567\",\n  \"fax\": \"054-1234567\",\n  \"mobile\": \"054-1234567\",\n  \"website\": \"https://www.greeninvoice.co.il\",\n  \"email\": \"john@gmail.com\",\n  \"templateId\": 1,\n  \"skinId\": 1,\n  \"signature\": \"https://signature-url\",\n  \"bankDisplay\": false,\n  \"bankDisplayEn\": false,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"bankSwift\": \"FIRBILIT\",\n  \"bankAba\": \"04064927\",\n  \"bankIban\": \"IL170108000000012612345\",\n  \"bankBeneficiary\": \"יעקב כהן\",\n  \"bankNameEn\": \"Leumi\",\n  \"bankBranchEn\": \"44\",\n  \"bankAccountEn\": \"565656565656\",\n  \"bankSwiftEn\": \"FIRBILIT\",\n  \"bankAbaEn\": \"04064927\",\n  \"bankIbanEn\": \"IL170108000000012612345\",\n  \"bankBeneficiaryEn\": \"John Doe\",\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"exemption\": false,\n  \"notifyEmail\": \"john@gmail.com\",\n  \"deductionDoc\": \"https://deduction-url\",\n  \"bookkeepingDoc\": \"https://bookkeeping-url\",\n  \"accountantEmails\": [],\n  \"accountantDocsEmailSettings\": 0,\n  \"accountantReportEmailSettings\": 0,\n  \"senderEmailSettings\": \"1\",\n  \"documentsEmailSettings\": 1,\n  \"incomeReportEmailSettings\": 0,\n  \"incomeReportFormatType\": 1,\n  \"emailSubjectType\": \"1\",\n  \"accountingType\": \"0\",\n  \"deductionId\": 0,\n  \"deductionRate\": 0,\n  \"advanceTaxRate\": 0,\n  \"advanceNationalInsuranceRate\": 0,\n  \"active\": true,\n  \"accountEmail\": \"example@email.com\",\n  \"documentCount\": 54,\n  \"settings\": {\n    \"documentCurrency\": \"ILS\",\n    \"documentLang\": \"he\",\n    \"documentRounding\": false,\n    \"documentCopyCurrencyRates\": true,\n    \"documentVatType\": 0,…"
+            }
+          ]
+        },
+        {
+          "name": "Business Related Files",
+          "uri_template": "/businesses/file",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Upload Business Related Files",
+              "description": "<p>Upload business logo, signature, bookkeeping document, deduction document.</p>\n<blockquote>\n<p><strong>NOTE:</strong> The uploaded files need to be in Base64. The current allowed file types are: GIF, PNG, JPG, SVG, PDF.</p>\n</blockquote>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"type\": \"logo\",\n  \"file\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAAE30lEQVQ4y5WUy29dRx3HPzNnzuOe+/Lj2vWNrxM7xUncoiiEqMACdYFgwwI2iEpFyoouu+ui/AUoG4SybBegdgULhEAVsKsUHqFJWYSoNHZJXW6c2LEd38d5zpkZFr6Ok1bl8ZO+mnNmpM989Zvf7ycu/4SnwjnwPZ9aVEMXJfulYarpMz8j+eBmwfYdTXvB48zX6qH0ghdFFX4vCOxaunH/64xxQh2zFP8lhBBY6xgcpKhAqrUXOt8+eab+nbjtf6vM9KKlYvn0KrcG9uWddPftKA7+B7gAAQxHJXEU1nq93qtfOBO9ogLvdKU1D7dGjMYpS8tdpprTLKzO/2A3efh21BC4/wQXAqxxDEY5qysz3z97tntFGnFyMBwzfpBgHXgefOnSWeK4SZ5ntOqNS0ONNx5WxpOfAxcCjHGkumDt/NJPl3qdV3ceHLC/P6TeqtGeblBqzfJyl+mZDoODBCEhCqPZqBGcLrVdF+qQroR4Gm4tpEXF+fOnf/bMQuvyxvoWQkBrKiYIfKTyWOl1mJ2bYzTIUb6HKR2e8jjZqS+YqlqXngeAdMCREJAksHxq7rXOXPPyR+tbKF/SaNWoxSF5njE/16a7+AxZpvFDhcMh5KFTI4Sn8aiQVEhUenDsWhfQaKulxaXZK/3NHZSS1OKQKArJi4xmK6bXWyBJSwQOayzWGJRUFJWm0pXDiCOrqKnp6Kg4GB4YFhc7P8rzkiLXxA0fpRQqUNjMcO7sGkVhGA1zlPJw1mG0JQglWZaznyWPpJJ4bpLz93/vJs0j8AIh1y743y2ynCBSKKUwxpBmCedWV/H9iP69HeJaDYGgMhokOOsYZ0mqhd1QSuKwh/D6THmYL+OoN/1T1pgFg8P3FUEYMB4PWFw8Qa+3yMf9T4jiCD/0KAuNcxZrHHlVMBgOb9d0kIYiPEwDoC6c9w/hlSWIVdNUlspY5hda6FKjdcWzp1bY298nGZeEoSDRGmscVWXBQZ4l7KaDP4xiR+GVxx167cv68UwJKtv/5tBZSiOtcRQ648zKOZrNJn++cRPfizHaTUrWIYRAOI9B+ghXpW9M+wJPuOMOnduUjx+0Sux+Guv3m+3w0vb9PeZPzPD8c6t8cr8P1qfeDhBCoEsDzmKtIM/GbN59+GaSVJu+kugnekatPrBkY0c+Aq1hZ2l4JWp2fjFOEi50nqMSOf1796lFLYyxaG0wxoIVVCZjf7y98euro1d2PxYIjl0DqPfeE5xY9eh+0SM7cGTj6pd7W8O/TnWaL8x369y5c5ftfkaj6ZBSIKXEkxJjK3b3dj80KnkxH3guG5rH9X0U8vqvLO9ctdz4raPwJAMtufm35KW5uU4SxJZ/buyAFdjSYK2hMiV7+wf0t/tvOTW82Gz720EkPm+wHkd9UfLDH68QhoKLF2e38iLpXr92d9xsh74Xi7HN6Rd5cV3Wqrf+tV5de/SRYPMWbNzUWPNZ+FNTMbln+eCdEa+9sfyNUPndd383fP3Wu8nV5lziPUgZpR9KZ0sLQtK/7UiHjv87fv6PtRt/d191z3+l0fqUkRYwP9Es0AbqQAT4gPy0czE5jCfK/vKb0e7tPyV/vH19vAycmkBDwAMMUAI5kD6hBBhP1hTIxATuTW4OJt/DyX53sieeeB8B2IkMUD2hEtBH//8GuBxdlPz72rMAAAAASUVORK5CYII=\"\n}",
+              "response_body_sample": "{\n  \"type\": \"logo\",\n  \"url\": \"https://cdn.example.com/545e38b5bdf54364a53d9d3f01b7da70.png\"\n}"
+            },
+            {
+              "method": "DELETE",
+              "name": "Delete Business Related Files",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"type\": \"logo\"\n}",
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Handling Documents Numbering",
+          "uri_template": "/businesses/numbering",
+          "description": "<p>When generating a document, the document receive a number, this number has to be unique for each document of the same type for accounting.</p>\n<p>Each document type starts from a different number.</p>\n<p>Some users that have migrated from other invoice systems might require to start from a different number in-order to keep their documents numbering intact &amp; consecutive.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get All Documents Numbering",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"type\": 300,\n    \"number\": 1,\n    \"nextNumber\": 1,\n    \"lastDocumentDate\": \"2017-01-01\",\n    \"used\": false,\n    \"active\": true\n  }\n]"
+            },
+            {
+              "method": "PUT",
+              "name": "Modify Initial Documents Numbering",
+              "description": "<p>This endpoint allows you to modify a document type initial numbering. Once modified and a first document of that type was generated - the document number will be locked for the specific type.</p>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"10\": 1,\n  \"100\": 10001,\n  \"200\": 20001,\n  \"210\": 30001,\n  \"300\": 40001,\n  \"305\": 50001,\n  \"320\": 60001,\n  \"330\": 70001,\n  \"400\": 80001,\n  \"405\": 1,\n  \"500\": 90001,\n  \"600\": 1,\n  \"610\": 1\n}",
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Get Business Documents Footer",
+          "uri_template": "/businesses/footer",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Business Documents Footer",
+              "description": "<blockquote>\n<p><strong>NOTE:</strong> If no footer was set then the output will be an empty JSON.</p>\n</blockquote>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"he\": \"This is a footer for Hebrew\",\n  \"en\": \"This is a footer for English\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Business Types",
+          "uri_template": "/businesses/types{?lang}",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Business Types",
+              "description": null,
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "String",
+                  "required": false,
+                  "description": "<p>Content language</p>",
+                  "default": "",
+                  "example": "he",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": 1,\n    \"name\": \"Osek Murshe\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Clients",
+      "description": "<p>You may add re-curring clients to your Green Invoice business user. This will allow you to add more information on the clients.</p>\n<p>The information can later be used to help you stay in touch with the clients and follow documents generated regarding their activities, as well as contact person, bank account and other information.</p>",
+      "resources": [
+        {
+          "name": "Add Client",
+          "uri_template": "/clients",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Add Client",
+              "description": "<p>Adds a new client to the active business.</p>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"department\": \"Sales\",\n  \"taxId\": \"0123456789\",\n  \"accountingKey\": \"10202\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"country\": \"IL\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"phone\": \"565656565656\",\n  \"fax\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": []\n}",
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"taxId\": \"0123456789\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": [],\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"send\": false,\n  \"department\": \"Sales\",\n  \"accountingKey\": \"10202\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"fax\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"incomeAmount\": 0,\n  \"paymentAmount\": 0,\n  \"balanceAmount\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Interacting with Existing Clients",
+          "uri_template": "/clients/{id}",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The client ID</p>",
+              "default": "",
+              "example": "8b338c95-095e-46d4-b2c6-331747508759",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Client",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"taxId\": \"0123456789\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": [],\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"send\": false,\n  \"department\": \"Sales\",\n  \"accountingKey\": \"10202\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"fax\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"incomeAmount\": 0,\n  \"paymentAmount\": 0,\n  \"balanceAmount\": 0\n}"
+            },
+            {
+              "method": "PUT",
+              "name": "Update Client",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"department\": \"Sales\",\n  \"taxId\": \"0123456789\",\n  \"accountingKey\": \"10202\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"send\": false,\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"country\": \"IL\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"phone\": \"565656565656\",\n  \"fax\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": []\n}",
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"taxId\": \"0123456789\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": [],\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"send\": false,\n  \"department\": \"Sales\",\n  \"accountingKey\": \"10202\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"fax\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"incomeAmount\": 0,\n  \"paymentAmount\": 0,\n  \"balanceAmount\": 0\n}"
+            },
+            {
+              "method": "DELETE",
+              "name": "Delete Client",
+              "description": "<blockquote>\n<p><strong>NOTE:</strong> Only inactive clients can be deleted.</p>\n</blockquote>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"taxId\": \"0123456789\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": [],\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"send\": false,\n  \"department\": \"Sales\",\n  \"accountingKey\": \"10202\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"category\": 16,\n  \"subCategory\": 1602,\n  \"fax\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"incomeAmount\": 0,\n  \"paymentAmount\": 0,\n  \"balanceAmount\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Clients",
+          "uri_template": "/clients/search",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Search Clients",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"Jacob\",\n  \"active\": true,\n  \"email\": \"example@email.com\",\n  \"contactPerson\": \"Shlomi\",\n  \"labels\": [],\n  \"taxId\": \"0123456789\",\n  \"page\": 1,\n  \"pageSize\": 20\n}",
+              "response_body_sample": "{\n  \"total\": 25,\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"pages\": 2,\n  \"items\": [\n    {\n      \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n      \"name\": \"לקוח אפ3\",\n      \"active\": true,\n      \"taxId\": \"0123456789\",\n      \"paymentTerms\": 0,\n      \"bankName\": \"לאומי\",\n      \"bankBranch\": \"44\",\n      \"bankAccount\": \"565656565656\",\n      \"country\": \"IL\",\n      \"phone\": \"565656565656\",\n      \"mobile\": \"565656565656\",\n      \"contactPerson\": \"Ido\",\n      \"emails\": [],\n      \"labels\": [],\n      \"creationDate\": 1503563534,\n      \"lastUpdateDate\": 1503563534\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Associate Existing Documents to a Client",
+          "uri_template": "/clients/{id}/assoc",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The client ID to associate the documents to</p>",
+              "default": "",
+              "example": "8b338c95-095e-46d4-b2c6-331747508759",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Associate Existing Documents to a Client",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"ids\": []\n}",
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Merge Clients",
+          "uri_template": "/clients/{id}/merge",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The client ID</p>",
+              "default": "",
+              "example": "8b338c95-095e-46d4-b2c6-331747508759",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Merge Clients",
+              "description": "<blockquote>\n<p><strong>NOTE:</strong> In-order to merge clients, one of them must be inactive. Once merged - the inactive client will be deleted and all his documents will be added to the merged client.</p>\n</blockquote>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"mergeId\": \"6f9g7a6d-095e-46d4-b2c6-331747508759\"\n}",
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Update Client Balance",
+          "uri_template": "/clients/{id}/balance",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The client ID</p>",
+              "default": "",
+              "example": "8b338c95-095e-46d4-b2c6-331747508759",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Update Client Balance",
+              "description": "<p>Update the balance of a client.</p>\n<p>This endpoint will recalculate the final payment amount of a client by the given requested balance.</p>\n<p>To reset a client's balance - insert 0 as value.</p>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"balance\": 4\n}",
+              "response_body_sample": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Suppliers",
+      "description": "<p>To ease the process of entering the same supplier on multiple expenses you are able to create a supplier once and use it various times later while creating expenses.</p>",
+      "resources": [
+        {
+          "name": "Add Supplier",
+          "uri_template": "/suppliers",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Add Supplier",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"department\": \"Sales\",\n  \"taxId\": \"0123456789\",\n  \"accountingKey\": \"10202\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"fax\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": []\n}",
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"taxId\": \"0123456789\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": [],\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"department\": \"Sales\",\n  \"accountingKey\": \"10202\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"fax\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"incomeAmount\": 0,\n  \"paymentAmount\": 0,\n  \"balanceAmount\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Interacting with Existing Supplier",
+          "uri_template": "/suppliers/{id}",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The supplier ID</p>",
+              "default": "",
+              "example": "17b3a103-cb47-b124-3d2b-ec9838cf35ad",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Supplier",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"taxId\": \"0123456789\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": [],\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"department\": \"Sales\",\n  \"accountingKey\": \"10202\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"fax\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"incomeAmount\": 0,\n  \"paymentAmount\": 0,\n  \"balanceAmount\": 0\n}"
+            },
+            {
+              "method": "PUT",
+              "name": "Update Supplier",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"department\": \"Sales\",\n  \"taxId\": \"0123456789\",\n  \"accountingKey\": \"10202\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"fax\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": []\n}",
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"taxId\": \"0123456789\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": [],\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"department\": \"Sales\",\n  \"accountingKey\": \"10202\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"fax\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"incomeAmount\": 0,\n  \"paymentAmount\": 0,\n  \"balanceAmount\": 0\n}"
+            },
+            {
+              "method": "DELETE",
+              "name": "Delete Supplier",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"name\": \"לקוח אפ3\",\n  \"active\": true,\n  \"taxId\": \"0123456789\",\n  \"paymentTerms\": 0,\n  \"bankName\": \"לאומי\",\n  \"bankBranch\": \"44\",\n  \"bankAccount\": \"565656565656\",\n  \"country\": \"IL\",\n  \"phone\": \"565656565656\",\n  \"mobile\": \"565656565656\",\n  \"contactPerson\": \"Ido\",\n  \"emails\": [],\n  \"labels\": [],\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"department\": \"Sales\",\n  \"accountingKey\": \"10202\",\n  \"address\": \"רחוב סוקולוב 15\",\n  \"city\": \"תל אביב-יפו\",\n  \"zip\": \"6291790\",\n  \"fax\": \"565656565656\",\n  \"remarks\": \"Customer approved 2016 sales\",\n  \"incomeAmount\": 0,\n  \"paymentAmount\": 0,\n  \"balanceAmount\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Suppliers",
+          "uri_template": "/suppliers/search",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Search Suppliers",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"Jacob\",\n  \"active\": true,\n  \"email\": \"example@email.com\",\n  \"contactPerson\": \"example@email.com\",\n  \"labels\": [],\n  \"page\": 1,\n  \"pageSize\": 20\n}",
+              "response_body_sample": "{\n  \"total\": 25,\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"pages\": 2,\n  \"items\": [\n    {\n      \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n      \"name\": \"לקוח אפ3\",\n      \"active\": true,\n      \"taxId\": \"0123456789\",\n      \"paymentTerms\": 0,\n      \"bankName\": \"לאומי\",\n      \"bankBranch\": \"44\",\n      \"bankAccount\": \"565656565656\",\n      \"country\": \"IL\",\n      \"phone\": \"565656565656\",\n      \"mobile\": \"565656565656\",\n      \"contactPerson\": \"Ido\",\n      \"emails\": [],\n      \"labels\": [],\n      \"creationDate\": 1503563534,\n      \"lastUpdateDate\": 1503563534\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Merge Suppliers",
+          "uri_template": "/suppliers/{id}/merge",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The supplier ID</p>",
+              "default": "",
+              "example": "17b3a103-cb47-b124-3d2b-ec9838cf35ad",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Merge Suppliers",
+              "description": "<blockquote>\n<p><strong>NOTE:</strong> In-order to merge suppliers, one of them must be inactive. Once merged - the inactive supplier will be deleted and all his documents will be added to the merged supplier.</p>\n</blockquote>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"mergeId\": \"6f9g7a6d-095e-46d4-b2c6-331747508759\"\n}",
+              "response_body_sample": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "description": "<p>While generating documents you are usually requested to add items.</p>\n<p>Items are products that are bought from you, it can be either a real product (such as electronic device, restaurant dish) or a virtual service (such as a programmer hour)..</p>\n<p>To ease the process of entering the same item on multiple documents you are able to create an item once and use it various times later while creating a document.</p>",
+      "resources": [
+        {
+          "name": "Add Item",
+          "uri_template": "/items",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Add Item",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"IKS00032\",\n  \"description\": \"פריט לדוגמה\",\n  \"price\": 20.12,\n  \"currency\": \"ILS\"\n}",
+              "response_body_sample": "{\n  \"id\": \"17b3a103-cb47-b124-3d2b-ec9838cf35ad\",\n  \"businessId\": \"5823cdf4-06c9-4f57-9c24-52a2deb55dbd\",\n  \"name\": \"IKS00032\",\n  \"description\": \"פריט לדוגמה\",\n  \"price\": 20.12,\n  \"currency\": \"ILS\",\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534\n}"
+            }
+          ]
+        },
+        {
+          "name": "Interacting with Existing Items",
+          "uri_template": "/items/{id}",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The item ID</p>",
+              "default": "",
+              "example": "17b3a103-cb47-b124-3d2b-ec9838cf35ad",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Item",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"17b3a103-cb47-b124-3d2b-ec9838cf35ad\",\n  \"businessId\": \"5823cdf4-06c9-4f57-9c24-52a2deb55dbd\",\n  \"name\": \"IKS00032\",\n  \"description\": \"פריט לדוגמה\",\n  \"price\": 20.12,\n  \"currency\": \"ILS\",\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534\n}"
+            },
+            {
+              "method": "PUT",
+              "name": "Update Item",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"IKS00032\",\n  \"description\": \"פריט לדוגמה\",\n  \"price\": 20.12,\n  \"currency\": \"ILS\"\n}",
+              "response_body_sample": "{\n  \"id\": \"17b3a103-cb47-b124-3d2b-ec9838cf35ad\",\n  \"businessId\": \"5823cdf4-06c9-4f57-9c24-52a2deb55dbd\",\n  \"name\": \"IKS00032\",\n  \"description\": \"פריט לדוגמה\",\n  \"price\": 20.12,\n  \"currency\": \"ILS\",\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534\n}"
+            },
+            {
+              "method": "DELETE",
+              "name": "Delete Item",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"17b3a103-cb47-b124-3d2b-ec9838cf35ad\",\n  \"businessId\": \"5823cdf4-06c9-4f57-9c24-52a2deb55dbd\",\n  \"name\": \"IKS00032\",\n  \"description\": \"פריט לדוגמה\",\n  \"price\": 20.12,\n  \"currency\": \"ILS\",\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Items",
+          "uri_template": "/items/search",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Search Items",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"name\": \"IKS00032\",\n  \"description\": \"programmer hour\",\n  \"currency\": \"ILS\",\n  \"page\": 1,\n  \"pageSize\": 20\n}",
+              "response_body_sample": "{\n  \"total\": 25,\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"pages\": 2,\n  \"items\": [\n    {\n      \"id\": \"17b3a103-cb47-b124-3d2b-ec9838cf35ad\",\n      \"businessId\": \"5823cdf4-06c9-4f57-9c24-52a2deb55dbd\",\n      \"name\": \"IKS00032\",\n      \"description\": \"פריט לדוגמה\",\n      \"price\": 20.12,\n      \"currency\": \"ILS\",\n      \"creationDate\": 1503563534,\n      \"lastUpdateDate\": 1503563534\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "description": "<p>The main component of the Green Invoice system is the documents, these documents can be of different types, such as but not only - order, invoice, receipt.</p>\n<p>Documents are business specific, and only the documents of the current used business are visible to you.</p>",
+      "resources": [
+        {
+          "name": "Add Document",
+          "uri_template": "/documents",
+          "description": "<p>Add a document to the current business.</p>\n<p>The document will be generated based on the default business &amp; document settings, and by any overriding request attributes that we receive in this endpoint.</p>\n<blockquote>\n<p><strong>NOTES:</strong></p>\n<ul>\n<li><strong>VAT Configuration</strong> - When declaring your <code>vatType</code>, there are multiple declarations available (and required). You can define the general <code>vatType</code> of the entire document, <strong>as well as</str…",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Add Document",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"description\": \"Just an order\",\n  \"remarks\": \"Some remarks\",\n  \"footer\": \"Texts in footer\",\n  \"emailContent\": \"Email content\",\n  \"type\": 300,\n  \"date\": \"2016-04-12\",\n  \"dueDate\": \"2016-04-30\",\n  \"lang\": \"he\",\n  \"currency\": \"ILS\",\n  \"vatType\": 0,\n  \"discount\": {\n    \"amount\": 1,\n    \"type\": \"sum\"\n  },\n  \"rounding\": true,\n  \"signed\": true,\n  \"attachment\": true,\n  \"maxPayments\": 1,\n  \"paymentRequestData\": {\n    \"plugins\": [\n      {\n        \"id\": \"031e827a-c664-c1e4-d231-a80027271123\",\n        \"group\": 100,\n        \"type\": 12010\n      }\n    ],\n    \"maxPayments\": 1\n  },\n  \"client\": {\n    \"id\": \"7944827a-c664-11e4-8231-080027271114\",\n    \"name\": \"name\",\n    \"emails\": [\n      \"email1@example.com\",\n      \"email2@example.com\"\n    ],\n    \"taxId\": \"0123456789\",\n    \"address\": \"1 Luria st\",\n    \"city\": \"Tel Aviv\",\n    \"zip\": \"1234567\",\n    \"country\": \"IL\",\n    \"phone\": \"+972-54-1234567\",\n    \"fax\": \"+972-54-1234567\",\n    \"mobile\": \"+972-54-1234567\",\n    \"add\": true,\n    \"self\": false\n  },\n  \"income\": [\n    {\n      \"catalogNum\": \"MXDFSDD\",\n      \"description\": \"Item description\",\n      \"quantity\": 1,\n      \"price\": 300.00,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"itemId\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n      \"vatType\": 1\n    }\n  ],\n  \"payment\": [\n    {\n      \"date\": \"2016-03-21\",\n      \"type\": 0,\n      \"price\": 300.00,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"bankName\": \"My Bank\",\n      \"bankBranch\": \"198\",\n      \"bankAccount\": \"212435\",\n      \"chequeNum\": \"10002\",\n      \"accountId\": \"TFGFFGSYYE\",\n      \"transactionId\": \"TGBBBXNLKS75SKJS\",\n      \"appType\": 1,\n      \"subType\": 1,\n      \"cardType\": 0,\n      \"cardNum\": \"8765\",\n      \"dealType\": 1,\n      \"numPayments\": 1,\n      \"firstPayment\": 10\n    }\n  ],\n  \"linkedDocumentIds\": [\n    \"031e827a-c664-c1e4-d231-a80027271123\"\n  ],\n  \"linkedPaymentId\": \"031e827a-c664-c1e4-d231-a80027271123\",\n  \"linkType\": \"link\"\n}",
+              "response_body_sample": "{\n  \"id\": \"03eb4b16-a519-11e4-85ba-6a0027271112\",\n  \"number\": 10002,\n  \"signed\": true,\n  \"lang\": \"he\",\n  \"url\": {\n    \"origin\": \"\",\n    \"he\": \"\",\n    \"en\": \"\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get a Preview Document",
+          "uri_template": "/documents/preview",
+          "description": "<p>Previews a document before the actual generation.</p>\n<p>This endpoint returns a file in Base64 format (you can read more about Base64 <a href=\"https://en.wikipedia.org/wiki/Base64\">here</a>).</p>\n<p>If you would like to view the file on your website there are build-in plugins to display PDF, other than that - if you would like to have a consistent user experience through all browsers (including mobile browsers) we would suggest using <a href=\"https://mozilla.github.io/pdf.js/\">PDF.js</a> (an…",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Get a Preview Document",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"description\": \"Just an order\",\n  \"remarks\": \"Some remarks\",\n  \"footer\": \"Texts in footer\",\n  \"type\": 300,\n  \"date\": \"2016-04-12\",\n  \"dueDate\": \"2016-04-30\",\n  \"lang\": \"he\",\n  \"currency\": \"ILS\",\n  \"vatType\": 0,\n  \"discount\": {\n    \"amount\": 1,\n    \"type\": \"sum\"\n  },\n  \"rounding\": true,\n  \"signed\": true,\n  \"maxPayments\": 1,\n  \"client\": {\n    \"id\": \"7944827a-c664-11e4-8231-080027271114\",\n    \"name\": \"name\",\n    \"emails\": [\n      \"email1@example.com\",\n      \"email2@example.com\"\n    ],\n    \"taxId\": \"0123456789\",\n    \"address\": \"1 Luria st\",\n    \"city\": \"Tel Aviv\",\n    \"zip\": \"1234567\",\n    \"country\": \"IL\",\n    \"phone\": \"+972-54-1234567\",\n    \"fax\": \"+972-54-1234567\",\n    \"mobile\": \"+972-54-1234567\",\n    \"add\": true,\n    \"self\": false\n  },\n  \"income\": [\n    {\n      \"catalogNum\": \"MXDFSDD\",\n      \"description\": \"Item description\",\n      \"quantity\": 1,\n      \"price\": 300.00,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"itemId\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n      \"vatType\": 1\n    }\n  ],\n  \"payment\": [\n    {\n      \"date\": \"2016-03-21\",\n      \"type\": 0,\n      \"price\": 300.00,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"bankName\": \"My Bank\",\n      \"bankBranch\": \"198\",\n      \"bankAccount\": \"212435\",\n      \"chequeNum\": \"10002\",\n      \"accountId\": \"TFGFFGSYYE\",\n      \"transactionId\": \"TGBBBXNLKS75SKJS\",\n      \"appType\": 1,\n      \"subType\": 1,\n      \"cardType\": 0,\n      \"cardNum\": \"8765\",\n      \"dealType\": 1,\n      \"numPayments\": 1,\n      \"firstPayment\": 10\n    }\n  ],\n  \"linkedDocumentIds\": [\n    \"031e827a-c664-c1e4-d231-a80027271123\"\n  ],\n  \"linkedPaymentId\": \"031e827a-c664-c1e4-d231-a80027271123\",\n  \"linkType\": \"link\"\n}",
+              "response_body_sample": "{\n  \"file\": \"Preview document file in Base64\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Interacting with Existing Documents",
+          "uri_template": "/documents/{id}",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The document ID</p>",
+              "default": "",
+              "example": "17b3a103-cb47-b124-3d2b-ec9838cf35ad",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Document",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n  \"description\": \"תיאור מסמך\",\n  \"type\": 300,\n  \"number\": \"12323\",\n  \"documentDate\": \"2017-12-12\",\n  \"creationDate\": 1470819922,\n  \"status\": 0,\n  \"lang\": \"he\",\n  \"amountDueVat\": 100.00,\n  \"amountExemptVat\": 18.00,\n  \"amountExcludedVat\": 18.00,\n  \"amountLocal\": 300.00,\n  \"amountOpened\": 300.00,\n  \"vat\": 54.00,\n  \"amount\": 354.00,\n  \"currency\": \"ILS\",\n  \"currencyRate\": 1,\n  \"linkedDocuments\": [\n    {\n      \"id\": \"a8804e5b-1031-4868-8332-76efb328961f\",\n      \"type\": 10,\n      \"number\": 12323,\n      \"documentDate\": \"2017-11-02\",\n      \"amount\": 354.00,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"status\": 1\n    }\n  ],\n  \"data\": {\n    \"taxAuthorityConfirmationNumber\": \"20241104100000000000001\",\n    \"taxAuthorityConfirmationInitiated\": true,\n    \"taxAuthorityConfirmationLastError\": 0\n  },\n  \"vatType\": 0,\n  \"income\": [\n    {\n      \"catalogNum\": \"MXDFSDD\",\n      \"description\": \"Item description\",\n      \"quantity\": 1,\n      \"price\": 300.00,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"vatType\": 1,\n      \"amount\": 354.00,\n      \"vat\": 54.00,\n      \"itemId\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n      \"amountTotal\": 354.00\n    }\n  ],\n  \"payment\": [\n    {\n      \"name\": \"העברה בנקאית\",\n      \"type\": 2,\n      \"subType\": 1,\n      \"price\": 300.00,\n      \"ref\": [\n        10\n      ],\n      \"cancellable\": false\n    }\n  ],\n  \"client\": {\n    \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n    \"name\": \"לקוח אפ3\",\n    \"taxId\": \"0123456789\",\n    \"department\": \"Sales\",\n    \"address\": \"רחוב סוקולוב 15\",\n    \"city\": \"תל אביב-יפו\",\n    \"zip\": \"6291790\",\n    \"country\": \"IL\",\n    \"phone\": \"565656565656\",\n    \"fax\": \"565656565656\",\n    \"mobile\": \"565656565656\",\n    \"emails\": [],\n    \"self\": false\n  },\n  \"business\": {\n    \"type\": 1,\n    \"taxId\": \"123456789\",\n    \"name\": \"עסק לדוגמה\",\n    \"title\": \"כותרת לעסק\",\n    \"address\": \"רחוב סוקולוב 15\",\n    \"city\": \"תל אביב-יפו\",\n    \"zip\": \"6291790\",\n    \"phone\": \"054-1234567\",\n    \"…"
+            }
+          ]
+        },
+        {
+          "name": "Search Documents",
+          "uri_template": "/documents/search",
+          "description": "<p>Search all generated documents (with possibility to filters).</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Search Documents",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"number\": 12001,\n  \"type\": [\n    10\n  ],\n  \"status\": [\n    0\n  ],\n  \"paymentTypes\": [\n    0\n  ],\n  \"fromDate\": \"2016-01-01\",\n  \"toDate\": \"2016-01-31\",\n  \"clientId\": \"28fa4c1d-a29b-11e4-963c-18002725111e\",\n  \"clientName\": \"John\",\n  \"description\": \"Any text\",\n  \"download\": true,\n  \"sort\": \"documentDate\"\n}",
+              "response_body_sample": "{\n  \"total\": 25,\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"pages\": 2,\n  \"items\": [\n    {\n      \"id\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n      \"description\": \"תיאור מסמך\",\n      \"type\": 300,\n      \"number\": \"12323\",\n      \"documentDate\": \"2017-12-12\",\n      \"creationDate\": 1470819922,\n      \"status\": 0,\n      \"lang\": \"he\",\n      \"amountDueVat\": 100.00,\n      \"amountExemptVat\": 18.00,\n      \"amountExcludedVat\": 18.00,\n      \"amountLocal\": 300.00,\n      \"amountOpened\": 300.00,\n      \"vat\": 54.00,\n      \"amount\": 354.00,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"linkedDocuments\": [\n        {\n          \"id\": \"a8804e5b-1031-4868-8332-76efb328961f\",\n          \"type\": 10,\n          \"number\": 12323,\n          \"documentDate\": \"2017-11-02\",\n          \"amount\": 354.00,\n          \"currency\": \"ILS\",\n          \"currencyRate\": 1,\n          \"status\": 1\n        }\n      ],\n      \"data\": {\n        \"taxAuthorityConfirmationNumber\": \"20241104100000000000001\",\n        \"taxAuthorityConfirmationInitiated\": true,\n        \"taxAuthorityConfirmationLastError\": 0\n      },\n      \"vatType\": 0,\n      \"income\": [\n        {\n          \"catalogNum\": \"MXDFSDD\",\n          \"description\": \"Item description\",\n          \"quantity\": 1,\n          \"price\": 300.00,\n          \"currency\": \"ILS\",\n          \"currencyRate\": 1,\n          \"vatType\": 1,\n          \"amount\": 354.00,\n          \"vat\": 54.00,\n          \"itemId\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n          \"amountTotal\": 354.00\n        }\n      ],\n      \"payment\": [\n        {\n          \"name\": \"העברה בנקאית\",\n          \"type\": 2,\n          \"subType\": 1,\n          \"price\": 300.00,\n          \"ref\": [\n            10\n          ],\n          \"cancellable\": false\n        }\n      ],\n      \"client\": {\n        \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n        \"name\": \"לקוח אפ3\",\n        \"emails\": [],\n        \"taxId\": \"0123456789\",\n        \"self\": false\n      },\n      \"business\": {\n        \"type\": 1,\n        \"exemption\": false\n      },\n      \"url\":…"
+            }
+          ]
+        },
+        {
+          "name": "Search Payments in Documents",
+          "uri_template": "/documents/payments/search",
+          "description": "<p>Search payments in documents, using different filters.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Search Payments in Documents",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"type\": [\n    320\n  ],\n  \"paymentTypes\": [\n    0\n  ],\n  \"fromDate\": \"2016-01-01\",\n  \"toDate\": \"2016-01-31\",\n  \"paymentId\": \"427547\",\n  \"sort\": \"date:desc\"\n}",
+              "response_body_sample": "{\n  \"total\": 25,\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"from\": 1,\n  \"to\": 25,\n  \"pages\": 2,\n  \"items\": [\n    {\n      \"id\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n      \"description\": \"תיאור מסמך\",\n      \"type\": 300,\n      \"number\": \"12323\",\n      \"documentDate\": \"2017-12-12\",\n      \"creationDate\": 1470819922,\n      \"status\": 0,\n      \"lang\": \"he\",\n      \"amountDueVat\": 0,\n      \"amountExemptVat\": 0,\n      \"amountExcludedVat\": 0,\n      \"amountLocal\": 0,\n      \"amountOpened\": 300.00,\n      \"vat\": 54.00,\n      \"amount\": 0,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"linkedDocuments\": [\n        {\n          \"id\": \"a8804e5b-1031-4868-8332-76efb328961f\",\n          \"type\": 10,\n          \"number\": 12323,\n          \"documentDate\": \"2017-11-02\",\n          \"amount\": 354.00,\n          \"currency\": \"ILS\",\n          \"currencyRate\": 1,\n          \"status\": 1\n        }\n      ],\n      \"data\": {\n        \"taxAuthorityConfirmationNumber\": \"20241104100000000000001\",\n        \"taxAuthorityConfirmationInitiated\": true,\n        \"taxAuthorityConfirmationLastError\": 0\n      },\n      \"vatType\": 0,\n      \"income\": [\n        {\n          \"catalogNum\": \"MXDFSDD\",\n          \"description\": \"Item description\",\n          \"quantity\": 1,\n          \"price\": 300.00,\n          \"currency\": \"ILS\",\n          \"currencyRate\": 1,\n          \"vatType\": 1,\n          \"amount\": 354.00,\n          \"vat\": 54.00,\n          \"itemId\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n          \"amountTotal\": 354.00\n        }\n      ],\n      \"payment\": [\n        {\n          \"id\": \"fa8d064b-aac7-fcb4-45e9-c1123b3899d2\",\n          \"type\": 2,\n          \"date\": \"2016-03-21\",\n          \"status\": [\n            0\n          ],\n          \"price\": 300.00,\n          \"currency\": \"ILS\",\n          \"currencyRate\": 1,\n          \"linkedDocumentId\": \"031e827a-c664-c1e4-d231-a80027271123\",\n          \"ref\": [\n            10\n          ],\n          \"cancellable\": false,\n          \"name\": \"העברה בנקאית\",\n          \"description\": \"בנק 555 / סניף 444 /…"
+            }
+          ]
+        },
+        {
+          "name": "Close Document",
+          "uri_template": "/documents/{id}/close",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The document id</p>",
+              "default": "",
+              "example": "07370b31-bd82-0c54-85dc-12d72d09d2c4",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Close Document",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Open Document",
+          "uri_template": "/documents/{id}/open",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The document id</p>",
+              "default": "",
+              "example": "07370b31-bd82-0c54-85dc-12d72d09d2c4",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Open Document",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Get Linked Documents",
+          "uri_template": "/documents/{id}/linked",
+          "description": "<p>Get information about linked / related documents to a specific document.</p>",
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The document id</p>",
+              "default": "",
+              "example": "07370b31-bd82-0c54-85dc-12d72d09d2c4",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Linked Documents",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": \"a8804e5b-1031-4868-8332-76efb328961f\",\n    \"type\": 10,\n    \"number\": 12323,\n    \"documentDate\": \"2017-11-02\",\n    \"amount\": 354.00,\n    \"currency\": \"ILS\",\n    \"currencyRate\": 1,\n    \"status\": 1\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Document Download Links",
+          "uri_template": "/documents/{id}/download/links",
+          "description": "<p>Get information about linked / related documents to a specific document.</p>",
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The document id</p>",
+              "default": "",
+              "example": "07370b31-bd82-0c54-85dc-12d72d09d2c4",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Document Download Links",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"he\": \"\",\n  \"en\": \"\",\n  \"origin\": \"\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Document Type Information",
+          "uri_template": "/documents/info{?type}",
+          "description": "<p>Get information about specific document type.</p>",
+          "parameters": [
+            {
+              "name": null,
+              "type": "number",
+              "required": true,
+              "description": "<p>The document type to get the relevant info for</p>",
+              "default": "",
+              "example": "305",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Document Information",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"paymentPlugins\": [\n    {\n      \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n      \"description\": \"פייפאל\",\n      \"friendlyName\": \"פייפאל\",\n      \"active\": true,\n      \"type\": 12100,\n      \"settings\": {},\n      \"maxPayments\": 3,\n      \"creationDate\": 1503563534,\n      \"lastUpdateDate\": 1503563534\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Document Templates",
+          "uri_template": "/documents/templates",
+          "description": "<p>Retrieves information regarding the available templates and their corresponding colors / skins in the system.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Document Templates",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n    {\n        \"id\": 6,\n        \"name\": \"דריי מרטיני\",\n        \"description\": \"כדי שהלוגו לא ייראה מפוקסל, מומלץ להעלות קובץ בגודל מינימלי של 450x300 פיקסלים.\",\n        \"defaultSkinId\": 8,\n        \"skins\": [\n            {\n                \"id\": 1,\n                \"attributes\": {\n                    \"color1\": \"#FF1919\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 2,\n                \"attributes\": {\n                    \"color1\": \"#FF6F00\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 3,\n                \"attributes\": {\n                    \"color1\": \"#D96B50\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 4,\n                \"attributes\": {\n                    \"color1\": \"#C19F78\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 5,\n                \"attributes\": {\n                    \"color1\": \"#C31F36\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 6,\n                \"attributes\": {\n                    \"color1\": \"#B159CF\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 7,\n                \"attributes\": {\n                    \"color1\": \"#8B74E8\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 8,\n                \"attributes\": {\n                    \"color1\": \"#2B5EC4\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 9,\n                \"attributes\": {\n                    \"color1\": \"#0FB83F\",\n                    \"color2\": \"#FFFFFF\"\n                }\n            },\n            {\n                \"id\": 10,\n                \"attributes\": {\n                    \"color1\": \"#138E51\",…"
+            }
+          ]
+        },
+        {
+          "name": "Get Document Types",
+          "uri_template": "/documents/types{?lang}",
+          "description": "<p>Retrieve information regarding the available document types that are open for the current business.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Document Types",
+              "description": null,
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "String",
+                  "required": false,
+                  "description": "<p>Content language</p>",
+                  "default": "",
+                  "example": "he",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": 10,\n    \"name\": \"הצעת מחיר\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Document Statuses",
+          "uri_template": "/documents/statuses{?lang}",
+          "description": "<p>Retrieve information regarding the available document statuses.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Document Statuses",
+              "description": null,
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "String",
+                  "required": false,
+                  "description": "<p>Content language</p>",
+                  "default": "",
+                  "example": "he",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": 0,\n    \"name\": \"מסמך פתוח\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Expenses",
+      "description": "<p>Expenses allow you to track your records about outcome and to understand your cash flow better.</p>",
+      "resources": [
+        {
+          "name": "Add Expense",
+          "uri_template": "/expenses",
+          "description": "<p>Add an expense to the current business.</p>\n<p>The expense will be generated based on the default business &amp; document settings, and by any overriding request attributes that we receive in this endpoint.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Add Expense",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"paymentType\": 2,\n  \"currency\": \"ILS\",\n  \"currencyRate\": 1,\n  \"vat\": 24.1,\n  \"amount\": 24.1,\n  \"date\": \"2018-03-09\",\n  \"dueDate\": \"2018-03-09\",\n  \"reportingDate\": \"2018-03-01\",\n  \"documentType\": 20,\n  \"number\": \"979424\",\n  \"description\": \"תקשורת\",\n  \"remarks\": \"This is a summerizing expense\",\n  \"supplier\": {\n    \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n    \"name\": \"לקוח אפ3\",\n    \"active\": true,\n    \"taxId\": \"0123456789\",\n    \"paymentTerms\": 0,\n    \"bankName\": \"לאומי\",\n    \"bankBranch\": \"44\",\n    \"bankAccount\": \"565656565656\",\n    \"country\": \"IL\",\n    \"phone\": \"565656565656\",\n    \"mobile\": \"565656565656\",\n    \"contactPerson\": \"Ido\",\n    \"emails\": [],\n    \"labels\": [],\n    \"creationDate\": 1503563534,\n    \"lastUpdateDate\": 1503563534,\n    \"department\": \"Sales\",\n    \"accountingKey\": \"10202\",\n    \"address\": \"רחוב סוקולוב 15\",\n    \"city\": \"תל אביב-יפו\",\n    \"zip\": \"6291790\",\n    \"fax\": \"565656565656\",\n    \"remarks\": \"Customer approved 2016 sales\",\n    \"incomeAmount\": 0,\n    \"paymentAmount\": 0,\n    \"balanceAmount\": 0\n  },\n  \"accountingClassification\": {\n    \"id\": \"44ad38d5-631b-498e-a3d7-0a4b0ff94c42\",\n    \"key\": \"3055\",\n    \"code\": \"3000\",\n    \"title\": \"הוצאות מחקר ופיתוח\",\n    \"irsCode\": 3055,\n    \"income\": 100,\n    \"type\": 20,\n    \"vat\": 100\n  },\n  \"active\": true,\n  \"addRecipient\": true,\n  \"addAccountingClassification\": true\n}",
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"businessType\": 1,\n  \"documentType\": 20,\n  \"status\": 10,\n  \"paymentType\": 2,\n  \"currency\": \"ILS\",\n  \"currencyRate\": 1,\n  \"amountExcludeVat\": 24.1,\n  \"vat\": 24.1,\n  \"amount\": 24.1,\n  \"date\": \"2018-03-09\",\n  \"dueDate\": \"2018-03-09\",\n  \"number\": \"979424\",\n  \"active\": true,\n  \"description\": \"תקשורת\",\n  \"remarks\": \"This is a summerizing expense\",\n  \"supplier\": {\n    \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n    \"name\": \"לקוח אפ3\",\n    \"active\": true,\n    \"taxId\": \"0123456789\",\n    \"paymentTerms\": 0,\n    \"bankName\": \"לאומי\",\n    \"bankBranch\": \"44\",\n    \"bankAccount\": \"565656565656\",\n    \"country\": \"IL\",\n    \"phone\": \"565656565656\",\n    \"mobile\": \"565656565656\",\n    \"contactPerson\": \"Ido\",\n    \"emails\": [],\n    \"labels\": [],\n    \"creationDate\": 1503563534,\n    \"lastUpdateDate\": 1503563534,\n    \"department\": \"Sales\",\n    \"accountingKey\": \"10202\",\n    \"address\": \"רחוב סוקולוב 15\",\n    \"city\": \"תל אביב-יפו\",\n    \"zip\": \"6291790\",\n    \"fax\": \"565656565656\",\n    \"remarks\": \"Customer approved 2016 sales\",\n    \"incomeAmount\": 0,\n    \"paymentAmount\": 0,\n    \"balanceAmount\": 0\n  },\n  \"thumbnail\": \"http://api.greeninvoice.co.il/api/v1/expenses/thumbnail?d=zAZYFr1XEaVAeldohoHZcH3pp2yyebk3rFKFkv78kPle%2F2WHzw2yCTVzcbXFONrlsvmrW61eY%3D\",\n  \"url\": \"http://api.greeninvoice.co.il/api/v1/expenses/download?d=zAZYFr1XEaVAeldohoHZcH3pp2y7oyebk3rFKFkv78kPle%2F2WHzw2yCTVzcbXFONrlsvmrW6%3D\",\n  \"cancellable\": true,\n  \"reportingDate\": \"2018-03\",\n  \"accountingClassification\": {\n    \"id\": \"44ad38d5-631b-498e-a3d7-0a4b0ff94c42\",\n    \"key\": \"3055\",\n    \"code\": \"3000\",\n    \"title\": \"הוצאות מחקר ופיתוח\",\n    \"irsCode\": 3055,\n    \"income\": 100,\n    \"type\": 20,\n    \"vat\": 100\n  },\n  \"amountLocal\": 24.1,\n  \"deductibleAmount\": 24.1,\n  \"deductibleVat\": 24.1,\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534\n}"
+            }
+          ]
+        },
+        {
+          "name": "Interacting with Existing Expenses",
+          "uri_template": "/expenses/{id}",
+          "description": null,
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The expense ID</p>",
+              "default": "",
+              "example": "17b3a103-cb47-b124-3d2b-ec9838cf35ad",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Expense",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"businessType\": 1,\n  \"documentType\": 20,\n  \"status\": 10,\n  \"paymentType\": 2,\n  \"currency\": \"ILS\",\n  \"currencyRate\": 1,\n  \"amountExcludeVat\": 24.1,\n  \"vat\": 24.1,\n  \"amount\": 24.1,\n  \"date\": \"2018-03-09\",\n  \"dueDate\": \"2018-03-09\",\n  \"number\": \"979424\",\n  \"active\": true,\n  \"description\": \"תקשורת\",\n  \"remarks\": \"This is a summerizing expense\",\n  \"supplier\": {\n    \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n    \"name\": \"לקוח אפ3\",\n    \"active\": true,\n    \"taxId\": \"0123456789\",\n    \"paymentTerms\": 0,\n    \"bankName\": \"לאומי\",\n    \"bankBranch\": \"44\",\n    \"bankAccount\": \"565656565656\",\n    \"country\": \"IL\",\n    \"phone\": \"565656565656\",\n    \"mobile\": \"565656565656\",\n    \"contactPerson\": \"Ido\",\n    \"emails\": [],\n    \"labels\": [],\n    \"creationDate\": 1503563534,\n    \"lastUpdateDate\": 1503563534,\n    \"department\": \"Sales\",\n    \"accountingKey\": \"10202\",\n    \"address\": \"רחוב סוקולוב 15\",\n    \"city\": \"תל אביב-יפו\",\n    \"zip\": \"6291790\",\n    \"fax\": \"565656565656\",\n    \"remarks\": \"Customer approved 2016 sales\",\n    \"incomeAmount\": 0,\n    \"paymentAmount\": 0,\n    \"balanceAmount\": 0\n  },\n  \"thumbnail\": \"http://api.greeninvoice.co.il/api/v1/expenses/thumbnail?d=zAZYFr1XEaVAeldohoHZcH3pp2yyebk3rFKFkv78kPle%2F2WHzw2yCTVzcbXFONrlsvmrW61eY%3D\",\n  \"url\": \"http://api.greeninvoice.co.il/api/v1/expenses/download?d=zAZYFr1XEaVAeldohoHZcH3pp2y7oyebk3rFKFkv78kPle%2F2WHzw2yCTVzcbXFONrlsvmrW6%3D\",\n  \"cancellable\": true,\n  \"reportingDate\": \"2018-03\",\n  \"accountingClassification\": {\n    \"id\": \"44ad38d5-631b-498e-a3d7-0a4b0ff94c42\",\n    \"key\": \"3055\",\n    \"code\": \"3000\",\n    \"title\": \"הוצאות מחקר ופיתוח\",\n    \"irsCode\": 3055,\n    \"income\": 100,\n    \"type\": 20,\n    \"vat\": 100\n  },\n  \"amountLocal\": 24.1,\n  \"deductibleAmount\": 24.1,\n  \"deductibleVat\": 24.1,\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534\n}"
+            },
+            {
+              "method": "PUT",
+              "name": "Update Expense",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"paymentType\": \"-1\",\n  \"currency\": \"ILS\",\n  \"currencyRate\": 1,\n  \"vat\": 24.1,\n  \"amount\": 24.1,\n  \"amountExcludeVat\": 26,\n  \"date\": \"2018-03-09\",\n  \"dueDate\": \"2018-03-09\",\n  \"reportingDate\": \"2018-03-01\",\n  \"documentType\": 20,\n  \"number\": \"979424\",\n  \"description\": \"תקשורת\",\n  \"remarks\": \"This is a summerizing expense\",\n  \"labels\": [],\n  \"supplier\": {\n    \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n    \"name\": \"לקוח אפ3\",\n    \"active\": true,\n    \"taxId\": \"0123456789\",\n    \"paymentTerms\": 0,\n    \"bankName\": \"לאומי\",\n    \"bankBranch\": \"44\",\n    \"bankAccount\": \"565656565656\",\n    \"country\": \"IL\",\n    \"phone\": \"565656565656\",\n    \"mobile\": \"565656565656\",\n    \"contactPerson\": \"Ido\",\n    \"emails\": [],\n    \"labels\": [],\n    \"creationDate\": 1503563534,\n    \"lastUpdateDate\": 1503563534,\n    \"department\": \"Sales\",\n    \"accountingKey\": \"10202\",\n    \"address\": \"רחוב סוקולוב 15\",\n    \"city\": \"תל אביב-יפו\",\n    \"zip\": \"6291790\",\n    \"fax\": \"565656565656\",\n    \"remarks\": \"Customer approved 2016 sales\",\n    \"incomeAmount\": 0,\n    \"paymentAmount\": 0,\n    \"balanceAmount\": 0\n  },\n  \"accountingClassification\": {\n    \"id\": \"44ad38d5-631b-498e-a3d7-0a4b0ff94c42\",\n    \"key\": \"3055\",\n    \"code\": \"3000\",\n    \"title\": \"הוצאות מחקר ופיתוח\",\n    \"irsCode\": 3055,\n    \"income\": 100,\n    \"type\": 20,\n    \"vat\": 100\n  },\n  \"active\": true\n}",
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"businessType\": 1,\n  \"documentType\": 20,\n  \"status\": 10,\n  \"paymentType\": 2,\n  \"currency\": \"ILS\",\n  \"currencyRate\": 1,\n  \"amountExcludeVat\": 24.1,\n  \"vat\": 24.1,\n  \"amount\": 24.1,\n  \"date\": \"2018-03-09\",\n  \"dueDate\": \"2018-03-09\",\n  \"number\": \"979424\",\n  \"active\": true,\n  \"description\": \"תקשורת\",\n  \"remarks\": \"This is a summerizing expense\",\n  \"supplier\": {\n    \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n    \"name\": \"לקוח אפ3\",\n    \"active\": true,\n    \"taxId\": \"0123456789\",\n    \"paymentTerms\": 0,\n    \"bankName\": \"לאומי\",\n    \"bankBranch\": \"44\",\n    \"bankAccount\": \"565656565656\",\n    \"country\": \"IL\",\n    \"phone\": \"565656565656\",\n    \"mobile\": \"565656565656\",\n    \"contactPerson\": \"Ido\",\n    \"emails\": [],\n    \"labels\": [],\n    \"creationDate\": 1503563534,\n    \"lastUpdateDate\": 1503563534,\n    \"department\": \"Sales\",\n    \"accountingKey\": \"10202\",\n    \"address\": \"רחוב סוקולוב 15\",\n    \"city\": \"תל אביב-יפו\",\n    \"zip\": \"6291790\",\n    \"fax\": \"565656565656\",\n    \"remarks\": \"Customer approved 2016 sales\",\n    \"incomeAmount\": 0,\n    \"paymentAmount\": 0,\n    \"balanceAmount\": 0\n  },\n  \"thumbnail\": \"http://api.greeninvoice.co.il/api/v1/expenses/thumbnail?d=zAZYFr1XEaVAeldohoHZcH3pp2yyebk3rFKFkv78kPle%2F2WHzw2yCTVzcbXFONrlsvmrW61eY%3D\",\n  \"url\": \"http://api.greeninvoice.co.il/api/v1/expenses/download?d=zAZYFr1XEaVAeldohoHZcH3pp2y7oyebk3rFKFkv78kPle%2F2WHzw2yCTVzcbXFONrlsvmrW6%3D\",\n  \"cancellable\": true,\n  \"reportingDate\": \"2018-03\",\n  \"accountingClassification\": {\n    \"id\": \"44ad38d5-631b-498e-a3d7-0a4b0ff94c42\",\n    \"key\": \"3055\",\n    \"code\": \"3000\",\n    \"title\": \"הוצאות מחקר ופיתוח\",\n    \"irsCode\": 3055,\n    \"income\": 100,\n    \"type\": 20,\n    \"vat\": 100\n  },\n  \"amountLocal\": 24.1,\n  \"deductibleAmount\": 24.1,\n  \"deductibleVat\": 24.1,\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534\n}"
+            },
+            {
+              "method": "DELETE",
+              "name": "Delete Expense",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n  \"businessType\": 1,\n  \"documentType\": 20,\n  \"status\": 10,\n  \"paymentType\": 2,\n  \"currency\": \"ILS\",\n  \"currencyRate\": 1,\n  \"amountExcludeVat\": 24.1,\n  \"vat\": 24.1,\n  \"amount\": 24.1,\n  \"date\": \"2018-03-09\",\n  \"dueDate\": \"2018-03-09\",\n  \"number\": \"979424\",\n  \"active\": true,\n  \"description\": \"תקשורת\",\n  \"remarks\": \"This is a summerizing expense\",\n  \"supplier\": {\n    \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n    \"name\": \"לקוח אפ3\",\n    \"active\": true,\n    \"taxId\": \"0123456789\",\n    \"paymentTerms\": 0,\n    \"bankName\": \"לאומי\",\n    \"bankBranch\": \"44\",\n    \"bankAccount\": \"565656565656\",\n    \"country\": \"IL\",\n    \"phone\": \"565656565656\",\n    \"mobile\": \"565656565656\",\n    \"contactPerson\": \"Ido\",\n    \"emails\": [],\n    \"labels\": [],\n    \"creationDate\": 1503563534,\n    \"lastUpdateDate\": 1503563534,\n    \"department\": \"Sales\",\n    \"accountingKey\": \"10202\",\n    \"address\": \"רחוב סוקולוב 15\",\n    \"city\": \"תל אביב-יפו\",\n    \"zip\": \"6291790\",\n    \"fax\": \"565656565656\",\n    \"remarks\": \"Customer approved 2016 sales\",\n    \"incomeAmount\": 0,\n    \"paymentAmount\": 0,\n    \"balanceAmount\": 0\n  },\n  \"thumbnail\": \"http://api.greeninvoice.co.il/api/v1/expenses/thumbnail?d=zAZYFr1XEaVAeldohoHZcH3pp2yyebk3rFKFkv78kPle%2F2WHzw2yCTVzcbXFONrlsvmrW61eY%3D\",\n  \"url\": \"http://api.greeninvoice.co.il/api/v1/expenses/download?d=zAZYFr1XEaVAeldohoHZcH3pp2y7oyebk3rFKFkv78kPle%2F2WHzw2yCTVzcbXFONrlsvmrW6%3D\",\n  \"cancellable\": true,\n  \"reportingDate\": \"2018-03\",\n  \"accountingClassification\": {\n    \"id\": \"44ad38d5-631b-498e-a3d7-0a4b0ff94c42\",\n    \"key\": \"3055\",\n    \"code\": \"3000\",\n    \"title\": \"הוצאות מחקר ופיתוח\",\n    \"irsCode\": 3055,\n    \"income\": 100,\n    \"type\": 20,\n    \"vat\": 100\n  },\n  \"amountLocal\": 24.1,\n  \"deductibleAmount\": 24.1,\n  \"deductibleVat\": 24.1,\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Expenses",
+          "uri_template": "/expenses/search",
+          "description": "<p>Search all generated expenses (with possibility to filters).</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Search Expenses",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"fromDate\": \"2016-01-01\",\n  \"toDate\": \"2016-01-31\",\n  \"dueDate\": \"2016-01-31\",\n  \"description\": \"Any text\",\n  \"supplierId\": \"Jacob\",\n  \"supplierName\": \"Jacob\",\n  \"number\": \"12345\",\n  \"paid\": true,\n  \"reported\": true,\n  \"sort\": \"example@email.com\",\n  \"minAmount\": 10.4,\n  \"maxAmount\": 50.7,\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"accountingClassificationId\": \"0efabcdd-477d-4fc1-a926-85228e5bda13\"\n}",
+              "response_body_sample": "{\n  \"total\": 25,\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"pages\": 2,\n  \"items\": [\n    {\n      \"businessType\": 1,\n      \"documentType\": 20,\n      \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n      \"status\": 10,\n      \"paymentType\": 2,\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"amountExcludeVat\": 76.92,\n      \"vat\": 13.08,\n      \"amountLocal\": 90,\n      \"amountExcludedLocal\": 0,\n      \"paymentAmountLocal\": 0,\n      \"amount\": 90,\n      \"date\": \"2024-05-01\",\n      \"reportingDate\": \"2024-05-01\",\n      \"number\": \"979424\",\n      \"active\": true,\n      \"creationDate\": 1503563534,\n      \"lastUpdateDate\": 1503563534,\n      \"accountingClassification\": {\n        \"id\": \"44ad38d5-631b-498e-a3d7-0a4b0ff94c42\",\n        \"key\": \"3055\",\n        \"code\": \"3000\",\n        \"title\": \"הוצאות מחקר ופיתוח\",\n        \"irsCode\": 3055,\n        \"income\": 100,\n        \"type\": 20,\n        \"vat\": 100\n      },\n      \"data\": {\n        \"description\": \"תקשורת\",\n        \"fileHash\": \"e21853bb1aeca0eb3c9f55a5ca1f0918\",\n        \"fileKey\": \"2019/11/2100ebba7ddb0341ce983478b9c62d5c5a.png\",\n        \"supplier\": {\n          \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n          \"name\": \"לקוח אפ3\",\n          \"active\": true,\n          \"taxId\": \"0123456789\",\n          \"paymentTerms\": 0,\n          \"bankName\": \"לאומי\",\n          \"bankBranch\": \"44\",\n          \"bankAccount\": \"565656565656\",\n          \"country\": \"IL\",\n          \"phone\": \"565656565656\",\n          \"mobile\": \"565656565656\",\n          \"contactPerson\": \"Ido\",\n          \"emails\": [],\n          \"labels\": [],\n          \"creationDate\": 1503563534,\n          \"lastUpdateDate\": 1503563534,\n          \"department\": \"Sales\",\n          \"accountingKey\": \"10202\",\n          \"address\": \"רחוב סוקולוב 15\",\n          \"city\": \"תל אביב-יפו\",\n          \"zip\": \"6291790\",\n          \"fax\": \"565656565656\",\n          \"remarks\": \"Customer approved 2016 sales\",\n          \"incomeAmount\": 0,\n          \"paymentAmount\": 0,\n          \"balanceAmount\": 0\n        }\n      },\n      \"deduct…"
+            }
+          ]
+        },
+        {
+          "name": "Open Expense",
+          "uri_template": "/expenses/{id}/open",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Open Expense",
+              "description": null,
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "String",
+                  "required": true,
+                  "description": "<p>The expense id</p>",
+                  "default": "",
+                  "example": "07370b31-bd82-0c54-85dc-12d72d09d2c4",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Close Expense",
+          "uri_template": "/expenses/{id}/close",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Close Expense",
+              "description": null,
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "String",
+                  "required": true,
+                  "description": "<p>The expense id</p>",
+                  "default": "",
+                  "example": "07370b31-bd82-0c54-85dc-12d72d09d2c4",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Get Allowed Expenses Statuses",
+          "uri_template": "/expenses/statuses",
+          "description": "<p>Shows the expense statuses the selected business can use when interacting with the expenses endpoints.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Allowed Expenses Statuses",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": 20,\n    \"name\": \"הוצאה מדווחת\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Accounting Classifications",
+          "uri_template": "/accounting/classifications/map",
+          "description": "<p>Shows the accounting classifications that were defined for this business.\nThe classification can be specified in the accountingClassification field when adding or updating an expense.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Accounting Classifications",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": \"44ad38d5-631b-498e-a3d7-0a4b0ff94c42\",\n    \"name\": \"הוצאות מחקר ופיתוח\",\n    \"code\": 3055,\n    \"parentIrsCode\": 3000\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create an Expense Draft / Update an Existing Expense via File Upload",
+          "uri_template": "/expenses/file",
+          "description": "<br>\nTo enhance security, file uploads now require a two-step process:\n<ol>\n<li>\n<p><strong>Request a Upload URL</strong> - Send a <code>GET</code> request to obtain a pre-signed URL and necessary authentication field.</p>\n</li>\n<li>\n<p><strong>Upload the File</strong> - Use the attributes from the previous response to perform the relevant <code>POST</code> request to the provided URL.</p>\n</li>\n</ol>\n<br>\n<br>\n<blockquote>\n<p><strong>NOTE:</strong> These actions are <strong>asynchronous</strong…",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Step 1: Get File Upload URL",
+              "description": "<p><a name=\"get-file-upload-url\"> </a></p>\n<h4>Request Full Endpoints:</h4>\n<ul>\n<li>\n<p>For the <strong>PRODUCTION</strong> environment: <code>https://apigw.greeninvoice.co.il/file-upload/v1/url</code></p>\n</li>\n<li>\n<p>For the <strong>SANDBOX</strong> environment: <code>https://api.sandbox.d.greeninvoice.co.il/file-upload/v1/url</code></p>\n</li>\n</ul>",
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "string",
+                  "required": true,
+                  "description": null,
+                  "default": "",
+                  "example": "",
+                  "values": [
+                    "expense"
+                  ]
+                },
+                {
+                  "name": null,
+                  "type": "string",
+                  "required": true,
+                  "description": "<p>'&quot;source&quot;: 5' is mandatory. &quot;id&quot; &amp; &quot;state&quot; should only exist for updating an existing expense</p>",
+                  "default": "",
+                  "example": "{\"source\": 5, \"id\": {{expenseId}} ,\"state\":\"expense\"}",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "{\n  \"url\": \"https://s3.eu-west-1.amazonaws.com/file-upload-service-uploaded\",\n  \"fields\": {\n    \"x-amz-meta-account-id\": \"7bb70788-a5a2-44ba-8148-128e6ad94e07\",\n    \"x-amz-meta-user-id\": \"7bb70788-a5a2-44ba-8148-128e6ad94e07\",\n    \"x-amz-meta-business-id\": \"5fa6ae35-3d1a-4700-ab1d-689a921f27ed\",\n    \"x-amz-meta-file-context\": \"expense\",\n    \"x-amz-meta-file-data\": \"{\\\"source\\\": 5}\",\n    \"bucket\": \"file-upload-service-uploaded\",\n    \"X-Amz-Algorithm\": \"AWS4-HMAC-SHA256\",\n    \"X-Amz-Credential\": \"ASIARYNZJIDOWGUCFND2/20240531/eu-west-1/s3/aws4_request\",\n    \"X-Amz-Date\": \"20240531T155356Z\",\n    \"X-Amz-Security-Token\": \"IQoJb3JpZ2luX2VjEMD//////////wEaCWV1LXdlc3QtMSJGMEQCIE/tZcjsRBNAQX37vYoUjcKIVzZ9xS+8BOpyhhHPmDREAiBvUmAfWoqGcmsa6HUpOv/SV/41MLNxevfGJQ0FDPSxRCqZAwhJEAIaDDEyMTE4NDUzNDc0OSIMQMzPL0ZzmImOCf4cKvYCvwOnlRpOGBdc1g54bpBS8wIWzKAIkm76Zl0mjt7eBaJydICJoGVb+rNOSHsgZTiiyfL6Xddkw9gxkC3n+xq81wvlhFKw3nw5fKEBL8Kcc5ukRbkkHFU9U2AmRO5VGJ1fAi9ujczENozpZ89IAl/EXzziLHSR9GT8B6+Uz06Ejy69wRRBMT3Kh8OsfRu3geogWjALR1fXn14lpZPcYWRQMiiFHYzxaBbrLMNuPpInTQfJULMx20Xt7pK5M9igjGCF4mhwprUfPjy6UAlLidAFPzVbv5sYqZwjq+cTGjxcpG9sfS/fKtOXVm+t0Djc07BlBetSmJq1JFkjnr8vsj4W/tKCBILGL6ckfAY4JrRNVaSY6pzKjrjrbHdiQGq69SHycfXC6Ikqm+l43QCpLB94NBUtjq8w9fTuTvgcchVUPJbKtFRb5AxWKuruTlIl6sNZHsI+2xeRfEvJ/zWIWadGu7IVlefzesV5frpJHBM2USv3Qp8YZ5Qwk+XnsgY6ngHq2r/xh0iBG6EzMd/jOGd5jiIbPluGdFgBb9apmPWCVZUMfyU+XjMAPDbT3M9RX01KhpkqnAkJz+7JeppVivXo8vKmVoJ3mW2lf9uUWiyVuB5W7Tu/NYcdvDPXZ1tULknpawyLFUFA3is5vV3CUgbdkw3ecQaQjidnHW6je1Sl4dzSUu+sIEYOXhh60UvxSWTsES1th9dp6k7msAWAxQ==\",\n    \"key\": \"2024/05/31/5fa6ae35-3d1a-4700-ab1d-689a921f27ed/${filename}\",\n    \"Policy\": \"eyJleHBpcmF0aW9uIjoiMjAyNC0wNS0zMVQxEXAMPLEo1NloiLCJjb25kaXRpb25zIjpbWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsMCwxNjc3NzIxNl0seyJ4LWFtei1tZXRhLWFjY291bnQtaWQiOiI3YmI3MDc4OC1hNWEyLTQ0YmEtODE0OC0xMjhlNmFkOTRlMDcifSx7IngtYW16LW1ldGEtdXNlci1pZCI6IjdiYjcwNzg4LWE1YTItNDRiYS04MTQ4LTEyOGU2YWQ5NGUwNyJ9LHsieC1hbXotbWV0YS1idXNpbmVzcy1pZCI6IjVmYTZhZTM1LTNkMWEtNDcwMC1hYjFkLTY4OWE5MjFmMj…"
+            }
+          ]
+        },
+        {
+          "name": "Implementation Code example",
+          "uri_template": "/expenses/example",
+          "description": "<p>When uploading the file (step 2), you <strong>must append all fields</strong> received from the <code>GET</code> File Upload URL request to your <code>FormData</code> object:</p>\n<pre><code>    interface File extends Blob {\n        readonly name: string;\n    }\n\n    async uploadFile(file: File, headers: object): Promise&lt;any&gt; {\n        const presignedPost = await this.getSignedUrl();\n        const data = new FormData();\n        Object.entries(presignedPost.fields).forEach(([field, value])…",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Step 2.A: Create Expense Draft via File",
+              "description": "<p>Add an expense draft to the current business.</p>\n<blockquote>\n<p><strong>NOTES:</strong></p>\n<ul>\n<li>Uploading a file always creates an expense draft - in order to generate an actual expense you need to &quot;manually&quot; approve the 'expense draft' after filling any required details.</li>\n<li>Use the <code>url</code> field you received in the response of the previous request (<a href=\"https://www.greeninvoice.co.il/api-docs#/reference/expenses/create-an-expense-draft-update-an-existing-expense-by-file/get-file-upload-url\">Get File Upload URL</a>)</li>\n</ul>\n</blockquote>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": null
+            },
+            {
+              "method": "POST",
+              "name": "Step 2.B: Update Expense File",
+              "description": "<blockquote>\n<p><strong>NOTES:</strong></p>\n<ul>\n<li>The expense could not be updated once reported (Expense status = 20)</li>\n<li>Use the <code>url</code> field you received in the response of the previous request (<a href=\"#get-file-upload-url\">Get File Upload URL</a>)</li>\n</ul>\n</blockquote>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Search Expense Drafts",
+          "uri_template": "/expenses/drafts/search",
+          "description": "<p>Search all generated expense drafts (with possibility to filters).</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Search Expense Drafts",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"fromDate\": \"2016-01-01\",\n  \"toDate\": \"2016-01-31\",\n  \"description\": \"Any text\",\n  \"supplierId\": \"Jacob\",\n  \"supplierName\": \"Jacob\",\n  \"page\": 1,\n  \"pageSize\": 20\n}",
+              "response_body_sample": "{\n  \"total\": 25,\n  \"page\": 1,\n  \"pageSize\": 20,\n  \"pages\": 2,\n  \"items\": [\n    {\n      \"currency\": \"ILS\",\n      \"currencyRate\": 1,\n      \"vat\": 24.1,\n      \"amount\": 24.1,\n      \"description\": \"תקשורת\",\n      \"supplier\": {\n        \"id\": \"8b338c95-095e-46d4-b2c6-331747508759\",\n        \"name\": \"לקוח אפ3\",\n        \"active\": true,\n        \"taxId\": \"0123456789\",\n        \"paymentTerms\": 0,\n        \"bankName\": \"לאומי\",\n        \"bankBranch\": \"44\",\n        \"bankAccount\": \"565656565656\",\n        \"country\": \"IL\",\n        \"phone\": \"565656565656\",\n        \"mobile\": \"565656565656\",\n        \"contactPerson\": \"Ido\",\n        \"emails\": [],\n        \"labels\": [],\n        \"creationDate\": 1503563534,\n        \"lastUpdateDate\": 1503563534,\n        \"department\": \"Sales\",\n        \"accountingKey\": \"10202\",\n        \"address\": \"רחוב סוקולוב 15\",\n        \"city\": \"תל אביב-יפו\",\n        \"zip\": \"6291790\",\n        \"fax\": \"565656565656\",\n        \"remarks\": \"Customer approved 2016 sales\",\n        \"incomeAmount\": 0,\n        \"paymentAmount\": 0,\n        \"balanceAmount\": 0\n      },\n      \"fileHash\": \"e21853bb1aeca0eb3c9f55a5ca1f0918\",\n      \"fileKey\": \"2019/11/2100ebba7ddb0341ce983478b9c62d5c5a.png\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "description": "<p>Provides interaction with our online invoice payments system.</p>",
+      "resources": [
+        {
+          "name": "Get Payment Form",
+          "uri_template": "/payments/form",
+          "description": "<p>Get a payment form. This form can be used in an IFrame in your website to provide payment request abilities for invoices within websites.</p>\n<p>After the payment was made - the system will automatically generate a document for you.</p>\n<p><strong>NOTE:</strong> Access to this endpoint is given only to accounts with one of the following clearing plugins:</p>\n<ul>\n<li>\n<p>Cardcom (E-COMMERCE terminal type)</p>\n</li>\n<li>\n<p>Isracard</p>\n</li>\n<li>\n<p>Digital Payments (by Grow)</p>\n</li>\n</ul>…",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Get Payment Form",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"description\": \"תיאור מסמך\",\n  \"type\": 320,\n  \"lang\": \"he\",\n  \"currency\": \"ILS\",\n  \"vatType\": 0,\n  \"amount\": 20,\n  \"maxPayments\": 1,\n  \"pluginId\": \"7944827a-c664-11e4-8231-080027271115\",\n  \"group\": 100,\n  \"client\": {\n    \"id\": \"7944827a-c664-11e4-8231-080027271114\",\n    \"name\": \"name\",\n    \"emails\": [\n      \"email1@example.com\",\n      \"email2@example.com\"\n    ],\n    \"taxId\": \"0123456789\",\n    \"address\": \"1 Luria st\",\n    \"city\": \"Tel Aviv\",\n    \"zip\": \"1234567\",\n    \"country\": \"IL\",\n    \"phone\": \"+972-54-1234567\",\n    \"fax\": \"+972-54-1234567\",\n    \"mobile\": \"+972-54-1234567\",\n    \"add\": true\n  },\n  \"income\": [\n    {\n      \"catalogNum\": \"MXDFSDD\",\n      \"description\": \"Item description\",\n      \"quantity\": 1,\n      \"price\": 20.00,\n      \"currency\": \"ILS\",\n      \"vatType\": 1\n    }\n  ],\n  \"remarks\": \"Some remarks\",\n  \"successUrl\": \"https://www.your-site-here.com/successful-payment-redirection-page-here\",\n  \"failureUrl\": \"https://www.your-site-here.com/failed-payment-redirection-page-here\",\n  \"notifyUrl\": \"https://www.your-site-here.com/notification-endpoint-here\",\n  \"custom\": \"Some custom data comes here\"\n}",
+              "response_body_sample": "{\n  \"errorCode\": 0,\n  \"url\": \"https://www.payment-page-iframe-url-comes-here.com\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Credit Card Tokens",
+          "uri_template": "/payments/tokens/search",
+          "description": "<p>Search saved credit card tokens.</p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Search Credit Card Tokens",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"paymentNumber\": \"Payment number\",\n  \"cardHolder\": \"Card holder name\",\n  \"externalKey\": \"Client ID\"\n}",
+              "response_body_sample": "{\n  \"id\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n  \"externalKey\": \"da5d064b-aac7-fcb4-45e9-c1123b3899d2\",\n  \"holderName\": \"John\",\n  \"creationDate\": 1503563534,\n  \"lastUpdateDate\": 1503563534,\n  \"number\": \"1234\",\n  \"expires\": \"1223\",\n  \"currencies\": [],\n  \"cardType\": 2\n}"
+            }
+          ]
+        },
+        {
+          "name": "Charge Credit Card Token",
+          "uri_template": "/payments/tokens/{id}/charge",
+          "description": "<p>Charge a credit card token. Document created data is returned.</p>",
+          "parameters": [
+            {
+              "name": null,
+              "type": "String",
+              "required": true,
+              "description": "<p>The token ID</p>",
+              "default": "",
+              "example": "8b338c95-095e-46d4-b2c6-331747508759",
+              "values": null
+            }
+          ],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Charge Credit Card Token",
+              "description": null,
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"description\": \"Transaction description\",\n  \"type\": 320,\n  \"lang\": \"he\",\n  \"currency\": \"ILS\",\n  \"vatType\": 0,\n  \"amount\": 20,\n  \"maxPayments\": 1,\n  \"income\": [\n    {\n      \"catalogNum\": \"MXDFSDD\",\n      \"description\": \"Item description\",\n      \"quantity\": 1,\n      \"price\": 20.00,\n      \"currency\": \"ILS\",\n      \"vatType\": 1\n    }\n  ],\n  \"remarks\": \"Some remarks\",\n  \"notifyUrl\": \"https://www.your-site-here.com/notification-endpoint-here\"\n}",
+              "response_body_sample": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Partners",
+      "description": "<p><strong>NOTES:</strong></p>\n<blockquote>\n<ul>\n<li>\n<p>Preforming actions in user accounts are restricted only for <strong>existing users in 'morning' with <code>Best</code> subscription plan or higher</strong>.</p>\n</li>\n<li>\n<p>Currently, partners are unable to create new user accounts.</p>\n</li>\n</ul>\n</blockquote>\n<p>To use the partners endpoints you have to be a Green Invoice partner.</p>\n<p>A morning by Green Invoice partner can connect third-party application to Green Invoice and control connected users through his application.</p>\n<p>Once you are a Green Invoice partner you'll get an authorization code.</p>\n<p>As you can understand, in-order to work under a controlled user, there will be 3 steps:</p>\n<ul>\n<li>\n<p>Request authorization from an existing morning by Green Invoice user.\nDoing so - will return a key which you should store and protect it from unauthorized access, the key - includes the user API key ID and API secret.</p>\n</li>\n<li>\n<p>Using your partner <code>Author…",
+      "resources": [
+        {
+          "name": "Get Partner Users",
+          "uri_template": "/partners/users",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get All Connected Users",
+              "description": "<p>Gets all the connected and approved users.</p>\n<p>To get the user API keys related to your partner make a request using the user email with <a href=\"#get-connected-user\"><code>Get Connected User</code></a> endpoint.</p>",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"email\": \"example@email.com\",\n    \"id\": \"hRQAQfATT75fKQJkkJzbbC3l7Gq9oHLVxiHGdgp/uJsOwLX7\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Request User Approval",
+          "uri_template": "/partners/users/connection",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "POST",
+              "name": "Request User Approval",
+              "description": "<p>Connect existing morning by Green Invoice user to partner.</p>\n<p>The user will then receive an email with request to approve the third-party connection.</p>\n<p>Once the user approves the request, you will get a JSON POST request notification to the callback url that you have specified in the <code>url</code> parameter you stated.</p>\n<p>This JSON POST notification will include the email that you requested to connect (so that you can identify to which user this key is relevant to).</p>\n<p><strong>NOTE:</strong> The connection approval email that the user receives expires within 3 days, once this connection request expires and wasn't approved by the user - a new connection request must be initiated.</p>\n<p><strong>SECURITY NOTE</strong>: You will also get a special header <code>X-Data-Signature</code> with the signed <code>SHA256</code> value of the body using your partner auth token as the signature salt key, this can be used at your side to identify the credibility of the source on…",
+              "parameters": [],
+              "schema_ref": null,
+              "request_body_sample": "{\n  \"email\": \"email@example.com\",\n  \"url\": \"https://example.com/callback\"\n}",
+              "response_body_sample": null
+            }
+          ]
+        },
+        {
+          "name": "Get Connected User",
+          "uri_template": "/partners/users{?email}",
+          "description": "<p><a name=\"get-connected-user\"> </a></p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Connected User",
+              "description": "<p>Gets an already connected and approved user.</p>\n<p>This will return API keys of the user which are relevant only to your partner account.</p>",
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "string",
+                  "required": true,
+                  "description": "<p>Account's email to retrieve token of.</p>",
+                  "default": "",
+                  "example": "email@example.com",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": \"hRQAQfATT75fKQJkkJzbbC3l7Gq9oHLVxiHGdgp/uJsOwLX7\",\n    \"bid\": \"hRQAQfATT75fKQJkkJzbbC3l7Gq9oHLVxiHGdgp/uJsOwLX7\",\n    \"email\": \"email@example.com\",\n    \"key\": {\n      \"id\": \"c5b12453-6de2-1154-cd81-2c2e03b8dafb\",\n      \"secret\": \"AVKqL9Te3xnRInaN1eWt6g\",\n      \"name\": \"Partner connection\",\n      \"description\": \"מפתח פעיל\",\n      \"creationDate\": 1485783129,\n      \"status\": 0\n    }\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Disconnect Partner User",
+          "uri_template": "/partners/users/connection{?email}",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "DELETE",
+              "name": "Disconnect Partner User",
+              "description": "<p>Removes a connected user from your partner.</p>\n<p>This will remove any partner related API keys from all the connected businesses of the user that was created and your will no longer be able to access it's resources.</p>\n<p>In case you are billed on this user, you will no longer pay on any future documents.</p>\n<p>Once the user is removed, the user will get a notification email regarding the disconnection.</p>\n<p>A disconnected partner user can reconnect at any time.</p>\n<p><strong>NOTE:</strong> All of the businesses of the specified user that relates to your partner will be disconnected.</p>",
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "string",
+                  "required": true,
+                  "description": "<p>Account's email to disconnect.</p>",
+                  "default": "",
+                  "example": "email@example.com",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tools",
+      "description": "<p>Different tools and objects resources that can be of help to you.</p>\n<p>The tools does not require a JWT token and are accessible to everyone for use.</p>\n<p><strong>NOTE:</strong> The base URL is: <code>https://cache.greeninvoice.co.il</code></p>",
+      "resources": [
+        {
+          "name": "Get Supported Business Categories",
+          "uri_template": "/businesses/v1/occupations?locale={locale}",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Supported Business Categories",
+              "description": "<p>Get the supported business categories and their sub categories.</p>\n<blockquote>\n<p><strong>NOTES:</strong></p>\n<ul>\n<li>The Endpoint URL is: <code>https://cache.greeninvoice.co.il/businesses/v1/occupations?locale=he_IL</code></li>\n<li>The <code>locale=he_IL</code> parameter is required.</li>\n</ul>\n</blockquote>",
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "string",
+                  "required": true,
+                  "description": "<p>Content language</p>",
+                  "default": "",
+                  "example": "",
+                  "values": [
+                    "he_IL"
+                  ]
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"id\": 22,\n    \"updatedAt\": 1718054936930,\n    \"name\": \"אבטחה וחקירות\",\n    \"children\": [\n      {\n        \"id\": 2201,\n        \"updatedAt\": 1718054936930,\n        \"name\": \"שירותי אבטחה\"\n      },\n      {\n        \"id\": 2201,\n        \"updatedAt\": 1718054936930,\n        \"name\": \"שירותי חקירה\"\n      }\n    ]\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Supported Countries",
+          "uri_template": "/geo-location/v1/countries?locale={locale}",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Supported Countries",
+              "description": "<p>Get all countries supported ordered by alphabetical order.</p>\n<blockquote>\n<p><strong>NOTES:</strong></p>\n<ul>\n<li>The Endpoint URL is: <code>https://cache.greeninvoice.co.il/geo-location/v1/countries?locale={locale}</code></li>\n<li>The <code>locale</code> parameter is required.</li>\n</ul>\n</blockquote>",
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "string",
+                  "required": true,
+                  "description": "<p>Content language</p>",
+                  "default": "",
+                  "example": "he_IL",
+                  "values": [
+                    "en_US",
+                    "he_IL"
+                  ]
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"alpha2code\": \"UG\",\n    \"alpha3code\": \"UGA\",\n    \"callingCode\": 256,\n    \"updatedAt\": 1718049888858,\n    \"name\": \"אוגנדה\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Supported Cities",
+          "uri_template": "/geo-location/v1/cities?locale={locale}&country={country}",
+          "description": "<p><a name=\"supported-cities\"> </a></p>",
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Supported Cities",
+              "description": "<p>Get all cities supported ordered by alphabetical order.</p>\n<blockquote>\n<p><strong>NOTES:</strong></p>\n<ul>\n<li>The Endpoint URL is: <code>https://cache.greeninvoice.co.il/geo-location/v1/cities?locale={locale}&amp;country=IL</code></li>\n<li>The <code>locale</code> and <code>country=IL</code> parameters are required.</li>\n</ul>\n</blockquote>",
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "string",
+                  "required": true,
+                  "description": "<p>Content language</p>",
+                  "default": "",
+                  "example": "he_IL",
+                  "values": [
+                    "en_US",
+                    "he_IL"
+                  ]
+                },
+                {
+                  "name": null,
+                  "type": "string",
+                  "required": true,
+                  "description": "<p>Israel's conutry code</p>",
+                  "default": "",
+                  "example": "IL",
+                  "values": [
+                    "IL"
+                  ]
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n    {\n        \"country\": \"IL\",\n        \"id\": \"967\",\n        \"updatedAt\": 1718052025382,\n        \"name\": \"אבו ג'ווייעד (שבט)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"472\",\n        \"updatedAt\": 1718052025380,\n        \"name\": \"אבו גוש\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"473\",\n        \"updatedAt\": 1718052025380,\n        \"name\": \"אבו סנאן\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"935\",\n        \"updatedAt\": 1718052025382,\n        \"name\": \"אבו סריחאן (שבט)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"958\",\n        \"updatedAt\": 1718052025382,\n        \"name\": \"אבו עבדון (שבט)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"1042\",\n        \"updatedAt\": 1718052025383,\n        \"name\": \"אבו עמאר (שבט)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"932\",\n        \"updatedAt\": 1718052025382,\n        \"name\": \"אבו עמרה (שבט)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"968\",\n        \"updatedAt\": 1718052025382,\n        \"name\": \"אבו קורינאת (שבט)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"1342\",\n        \"updatedAt\": 1718052025384,\n        \"name\": \"אבו קרינאת (יישוב)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"966\",\n        \"updatedAt\": 1718052025382,\n        \"name\": \"אבו רובייעה (שבט)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"961\",\n        \"updatedAt\": 1718052025382,\n        \"name\": \"אבו רוקייק (שבט)\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"1375\",\n        \"updatedAt\": 1718052025384,\n        \"name\": \"אבו תלול\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"652\",\n        \"updatedAt\": 1718052025381,\n        \"name\": \"אבטין\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"1275\",\n        \"updatedAt\": 1718052025383,\n        \"name\": \"אבטליון\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"679\",\n        \"updatedAt\": 1718052025381,\n        \"name\": \"אביאל\"\n    },\n    {\n        \"country\": \"IL\",\n        \"id\": \"1115\",\n        \"updatedAt\": 1718052025383,\n        \"n…"
+            }
+          ]
+        },
+        {
+          "name": "Get Supported Currencies",
+          "uri_template": "/currency-exchange/v1/latest?base={base}",
+          "description": null,
+          "parameters": [],
+          "actions": [
+            {
+              "method": "GET",
+              "name": "Get Supported Currencies",
+              "description": "<p>Get the supported currencies.\nRetrieves the latest currency and the preivious day exchange rates by specified base currency.</p>\n<blockquote>\n<p><strong>NOTES:</strong></p>\n<ul>\n<li>The Endpoint URL is: <code>https://cache.greeninvoice.co.il/currency-exchange/v1/latest?base={base}</code></li>\n<li>The <code>base</code> parameter is required.</li>\n</ul>\n</blockquote>",
+              "parameters": [
+                {
+                  "name": null,
+                  "type": "String",
+                  "required": true,
+                  "description": "<p>The 3-letter code for base currency</p>",
+                  "default": "",
+                  "example": "ILS",
+                  "values": null
+                }
+              ],
+              "schema_ref": null,
+              "request_body_sample": null,
+              "response_body_sample": "[\n  {\n    \"base\": \"ILS\",\n    \"code\": \"USD\",\n    \"symbol\": \"$\",\n    \"updatedAt\": 1720265835875,\n    \"rates\": {\n      \"spot\": {\n        \"current\": 3.693908,\n        \"previous\": 3.679988,\n        \"change\": 0.01392,\n        \"changePercent\": 0.378262\n      },\n      \"closing\": {\n        \"current\": 3.721,\n        \"previous\": 3.741,\n        \"change\": -0.02,\n        \"changePercent\": -0.534616\n      }\n    }\n  }\n]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

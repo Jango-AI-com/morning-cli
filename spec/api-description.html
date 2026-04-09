@@ -1,0 +1,1077 @@
+<p><img src="https://cdn.greeninvoice.co.il/files/ugc/f/1/8/f185c651f3514ee8a53139257d3bfa19.png" alt="morning by Green Invoice Logo"></p>
+<h2>Overview</h2>
+<h3>Endpoint URL</h3>
+<p>The Green Invoice system includes multiple environments, each serving a different purpose.</p>
+<p>These environments use different databases and API keys, meaning that data generated in one environment will not be available in another.</p>
+<h4>Sandbox</h4>
+<p>This environment is used for testing, allowing you to experiment without affecting your production data. It includes the latest system updates.</p>
+<ul>
+<li>
+<p><strong>Registration:</strong> To use this environment, you must create a new user at <a href="https://lp.sandbox.d.greeninvoice.co.il/join">lp.sandbox.d.greeninvoice.co.il/join</a>.</p>
+</li>
+<li>
+<p><strong>Base URL:</strong> <code>https://sandbox.d.greeninvoice.co.il/api/v1/</code></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong>
+<br>
+There is no need to enter credit card information when adding a subscription; a demo credit card is used automatically for Sandbox subscriptions.</p>
+</blockquote>
+<br>
+<br>
+<p><strong>Payments Testing in Sandbox</strong></p>
+<p>When testing the payments section, a preconfigured testing credit card is used.</p>
+<ul>
+<li>
+<p><strong>Allowed amount:</strong> Up to (or equal to) <strong>5,000 ILS</strong>.</p>
+</li>
+<li>
+<p><strong>Failure simulation:</strong> Amounts exceeding 5,000 ILS will result in a card issue to demonstrate a failing transaction.
+<br></p>
+</li>
+</ul>
+<h4>Production:</h4>
+<p>This is the default, live environment.</p>
+<ul>
+<li><strong>Base URL:</strong> <code>https://api.greeninvoice.co.il/api/</code>.</li>
+</ul>
+<h3>HTTP response codes</h3>
+<ul>
+<li>
+<p><strong>200 — Success</strong> Everything went smooth.</p>
+</li>
+<li>
+<p><strong>400 — Bad Request</strong> There was a validation error with the input.</p>
+</li>
+<li>
+<p><strong>401 — Unauthorized</strong> Missing or incorrect JSON Web Token (JWT) in <code>Authorization</code> header.</p>
+</li>
+<li>
+<p><strong>403 — Forbidden</strong> You are trying to request a resource you aren't allowed to.</p>
+</li>
+<li>
+<p><strong>404 — Not Found</strong> One or more of the required resources was not found, or you do not own the resource.</p>
+</li>
+<li>
+<p><strong>500 — Internal Server Error</strong> This is an issue with morning by Green Invoice’s servers processing your request. In most cases we are notified so that we can investigate the issue.</p>
+</li>
+</ul>
+<h3>Error Codes</h3>
+<p>When working with the morning by Green Invoice system you might have to tackle error codes that you will receive as response.</p>
+<p>Whenever the morning by Green Invoice servers detect an error it will return a JSON object containing error details:</p>
+<pre><code>{
+    &quot;errorCode&quot;: 2002,
+    &quot;errorMessage&quot;: &quot;מייל או סיסמה לא נכונים.&quot;
+}
+</code></pre>
+<p>Green Invoice system is in Hebrew language and therefore the errors you will receive are in Hebrew.</p>
+<p>We have added a list for you to view of the error code numbers and their descriptions (the descriptions are in Hebrew).</p>
+<table>
+<thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>401</td>
+<td>גישה נדחתה, נא להתחבר מחדש.</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>שדה שם ריק.</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>לא נמצא עסק פעיל בחשבון.</td>
+</tr>
+<tr>
+<td>1004</td>
+<td>Empty request body or invalid JSON.</td>
+</tr>
+<tr>
+<td>1005</td>
+<td>שגיאה במהלך שמירה.</td>
+</tr>
+<tr>
+<td>1006</td>
+<td>נא לחדש את המינוי.</td>
+</tr>
+<tr>
+<td>1007</td>
+<td>חסרה הרשאה מתאימה.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>גישה אסורה.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>פריט לא נמצא.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed.</td>
+</tr>
+<tr>
+<td>1008</td>
+<td>פריט לא עודכן, כיוון שלא בוצעו שינויים.</td>
+</tr>
+<tr>
+<td>1009</td>
+<td>יש לבחור כתובות מייל.</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>קיימת כבר בקשה עם נתונים זהים.</td>
+</tr>
+<tr>
+<td>1011</td>
+<td>שפה לא נתמכת.</td>
+</tr>
+<tr>
+<td>1012</td>
+<td>פעולה זו נתמכת במינוי גבוה יותר.</td>
+</tr>
+<tr>
+<td>1013</td>
+<td>קובץ ריק או לא תקין.</td>
+</tr>
+<tr>
+<td>1014</td>
+<td>סוג קובץ לא נתמך.</td>
+</tr>
+<tr>
+<td>1015</td>
+<td>יש להסדיר את החוב בחשבון על מנת לבצע את הפעולה.</td>
+</tr>
+<tr>
+<td>1016</td>
+<td>שגיאה בעדכון בסיס נתונים.</td>
+</tr>
+<tr>
+<td>1017</td>
+<td>שגיאה כללית.</td>
+</tr>
+<tr>
+<td>1018</td>
+<td>שגיאה בשליחת מייל. יתכן וכתובת המייל חסומה או לא תקינה.</td>
+</tr>
+<tr>
+<td>1019</td>
+<td>כתובת המייל של הנמען חסומה לשליחה.</td>
+</tr>
+<tr>
+<td>1020</td>
+<td>שגיאת הצפנה.</td>
+</tr>
+<tr>
+<td>1100</td>
+<td>שדה {id} לא תקין</td>
+</tr>
+<tr>
+<td>1101</td>
+<td>לא נשלחו שדות לעדכון.</td>
+</tr>
+<tr>
+<td>1102</td>
+<td>כתובת מייל לא תקינה.</td>
+</tr>
+<tr>
+<td>1103</td>
+<td>כתובת אתר לא תקינה.</td>
+</tr>
+<tr>
+<td>1104</td>
+<td>קוד מדינה לא תקין.</td>
+</tr>
+<tr>
+<td>1105</td>
+<td>ערך תנאי תשלום לא תקין.</td>
+</tr>
+<tr>
+<td>1106</td>
+<td>ערך קוד מטבע לא תקין.</td>
+</tr>
+<tr>
+<td>1107</td>
+<td>שער המרה לא תקין, ערך צריך להיות גדול מאפס.</td>
+</tr>
+<tr>
+<td>1108</td>
+<td>שיעור מע&quot;מ לא תקין. צריך להיות בין 0-1.</td>
+</tr>
+<tr>
+<td>1109</td>
+<td>קיימת שורה עם מע&quot;מ במסמך ללא מע&quot;מ.</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>מחיר לא תקין.</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>החשבון עדיין לא פעיל.</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>משתמש חסום.</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>מייל או סיסמה לא נכונים.</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>משתמש לא קיים.</td>
+</tr>
+<tr>
+<td>2004</td>
+<td>נא למלא שם פרטי.</td>
+</tr>
+<tr>
+<td>2005</td>
+<td>נא למלא שם משפחה.</td>
+</tr>
+<tr>
+<td>2006</td>
+<td>סיסמה לא תקינה. צריכה להיות 8-16 ספרות או תווים.</td>
+</tr>
+<tr>
+<td>2007</td>
+<td>מייל תפוס.</td>
+</tr>
+<tr>
+<td>2008</td>
+<td>סיסמה נוכחית לא נכונה.</td>
+</tr>
+<tr>
+<td>2009</td>
+<td>מספר ת.ז. לא תקין.</td>
+</tr>
+<tr>
+<td>2010</td>
+<td>החשבון כבר הופעל.</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>ערך id לא תקין.</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>ערך type לא תקין.</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>נתוני מפתח לא נכונים.</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>מספר עוסק / ח.פ אינו תקין.</td>
+</tr>
+<tr>
+<td>1112</td>
+<td>לא ניתן להוסיף מסמכים. בחודש זה הופקה כמות המסמכים המירבית לחשבון.</td>
+</tr>
+<tr>
+<td>1113</td>
+<td>שדה תקבול לא נשלח.</td>
+</tr>
+<tr>
+<td>1114</td>
+<td>תאריך התחלה לא תקין.</td>
+</tr>
+<tr>
+<td>1115</td>
+<td>תאריך סיום לא תקין.</td>
+</tr>
+<tr>
+<td>1116</td>
+<td>סכום מע״מ לא תקין.</td>
+</tr>
+<tr>
+<td>1117</td>
+<td>תאריך לא תקין.</td>
+</tr>
+<tr>
+<td>1118</td>
+<td>לא ניתן לרכוש שירותים נוספים ללא מסלול פעיל בתשלום.</td>
+</tr>
+<tr>
+<td>1119</td>
+<td>גודל עמוד צריך להיות לכל היותר 100.</td>
+</tr>
+<tr>
+<td>1120</td>
+<td>כתובת הדומיין של המייל לא תקינה.</td>
+</tr>
+<tr>
+<td>2100</td>
+<td>סוג עוסק לא תקין.</td>
+</tr>
+<tr>
+<td>2101</td>
+<td>שם העסק לא יכול להיות ריק.</td>
+</tr>
+<tr>
+<td>2102</td>
+<td>לא ניתן להוסיף עוד עסקים במסגרת המינוי.</td>
+</tr>
+<tr>
+<td>2103</td>
+<td>נא למלא כתובת עסק.</td>
+</tr>
+<tr>
+<td>2104</td>
+<td>נא למלא עיר.</td>
+</tr>
+<tr>
+<td>2105</td>
+<td>קובץ לא תקין או גדול מ 5M.</td>
+</tr>
+<tr>
+<td>2106</td>
+<td>סוג קובץ לא נתמך.</td>
+</tr>
+<tr>
+<td>2107</td>
+<td>מספר תבנית עיצוב לא תקין.</td>
+</tr>
+<tr>
+<td>2125</td>
+<td>מספר סקין בתבנית עיצוב לא תקין.</td>
+</tr>
+<tr>
+<td>2126</td>
+<td>אחוז מקדמות אינו תקין. ערך תקין הוא מספר בין 0-35.</td>
+</tr>
+<tr>
+<td>2127</td>
+<td>ערך תחום עיסוק לא תקין.</td>
+</tr>
+<tr>
+<td>2128</td>
+<td>ערך מקצוע לא תקין.</td>
+</tr>
+<tr>
+<td>2129</td>
+<td>ערך סדר עיצוב שדות תקבולים במסמך לא תקין.</td>
+</tr>
+<tr>
+<td>2108</td>
+<td>לא נמצא עסק.</td>
+</tr>
+<tr>
+<td>2109</td>
+<td>מספר סניף בנק יכול להכיל עד 5 תווים.</td>
+</tr>
+<tr>
+<td>2110</td>
+<td>עסק עם שם זהה כבר רשום בחשבון.</td>
+</tr>
+<tr>
+<td>2111</td>
+<td>מספר עוסק / ח.פ כבר קיים בחשבון.</td>
+</tr>
+<tr>
+<td>2112</td>
+<td>מספר עוסק / ח.פ כבר קיים במערכת תחת חשבון אחר.</td>
+</tr>
+<tr>
+<td>2113</td>
+<td>מספר עוסק / ח.פ כבר רשום בחשבון פעמיים. ניתן עד להקים עד 2 עסקים עם אותו מספר עוסק.</td>
+</tr>
+<tr>
+<td>2114</td>
+<td>מספר תיק ניכויים אינו תקין.</td>
+</tr>
+<tr>
+<td>2115</td>
+<td>אחוז ניכוי במקור אינו תקין. ערך תקין הוא מספר בין 0-35.</td>
+</tr>
+<tr>
+<td>2116</td>
+<td>ערך שיטת דיווח לא תקין.</td>
+</tr>
+<tr>
+<td>2117</td>
+<td>ניתן להוסיף עד 3 כתובות מייל להנהלת חשבונות.</td>
+</tr>
+<tr>
+<td>2118</td>
+<td>חלק מההשדות לא עודכנו. קיים עסק נוסף עם מספר עוסק זהה ולכן חייב להישמר ביניהם טווח הפרש של לפחות 8,000.</td>
+</tr>
+<tr>
+<td>2119</td>
+<td>מספור מסמך לא תקין. ערכים תקינים בין 1-999999999.</td>
+</tr>
+<tr>
+<td>2120</td>
+<td>שדה {types} לא נשלח.</td>
+</tr>
+<tr>
+<td>2121</td>
+<td>לא ניתן לעדכן מספור זה מאחר וכבר הופקו מסמכים בשנה זו.</td>
+</tr>
+<tr>
+<td>2122</td>
+<td>לא ניתן לבצע פעולה זו בעסק מוקפא.</td>
+</tr>
+<tr>
+<td>2123</td>
+<td>ערך {id} לא תקין של העסק</td>
+</tr>
+<tr>
+<td>2124</td>
+<td>תוכן בתחתית המסמך מוגבל ל-2000 תווים.</td>
+</tr>
+<tr>
+<td>2200</td>
+<td>ניתן להוסיף עד 3 כתובות מייל ללקוח.</td>
+</tr>
+<tr>
+<td>2201</td>
+<td>נא למלא שם לקוח.</td>
+</tr>
+<tr>
+<td>2202</td>
+<td>לא ניתן לאחד לקוח פעיל.</td>
+</tr>
+<tr>
+<td>2203</td>
+<td>לא ניתן למחוק לקוח שהופקו עבורו מסמכים.</td>
+</tr>
+<tr>
+<td>2204</td>
+<td>שדה {id} של לקוח מטרה לא נשלח.</td>
+</tr>
+<tr>
+<td>2205</td>
+<td>לא נמצאו לקוחות חדשים או שהקובץ המיובא אינו תקין.</td>
+</tr>
+<tr>
+<td>2206</td>
+<td>ניתן להוסיף עד 3 תגיות ללקוח.</td>
+</tr>
+<tr>
+<td>2207</td>
+<td>קובץ לא תקין או גדול מ 5M.</td>
+</tr>
+<tr>
+<td>2208</td>
+<td>יתרה לא תקינה.</td>
+</tr>
+<tr>
+<td>2209</td>
+<td>הכנסות לא תקינות.</td>
+</tr>
+<tr>
+<td>2210</td>
+<td>לא ניתן למחוק לקוח בעל כרטיסי אשראי שמורים.</td>
+</tr>
+<tr>
+<td>2250</td>
+<td>ניתן להוסיף עד 3 כתובות מייל לספק.</td>
+</tr>
+<tr>
+<td>2251</td>
+<td>נא למלא שם ספק.</td>
+</tr>
+<tr>
+<td>2252</td>
+<td>לא ניתן לאחד ספק פעיל.</td>
+</tr>
+<tr>
+<td>2253</td>
+<td>לא ניתן למחוק ספק ששויכו אליו הוצאות.</td>
+</tr>
+<tr>
+<td>2254</td>
+<td>שדה {id} של ספק מטרה לא נשלח.</td>
+</tr>
+<tr>
+<td>2255</td>
+<td>לא נמצאו ספקים חדשים ותקינים בקובץ היבוא.</td>
+</tr>
+<tr>
+<td>2256</td>
+<td>ניתן להוסיף עד 3 תגיות ללקוח.</td>
+</tr>
+<tr>
+<td>2257</td>
+<td>קובץ לא תקין או גדול מ 5M.</td>
+</tr>
+<tr>
+<td>2258</td>
+<td>יתרה לא תקינה.</td>
+</tr>
+<tr>
+<td>2259</td>
+<td>הכנסות לא תקינות.</td>
+</tr>
+<tr>
+<td>2300</td>
+<td>נא למלא שם פריט.</td>
+</tr>
+<tr>
+<td>2301</td>
+<td>נא למלא תיאור פריט.</td>
+</tr>
+<tr>
+<td>2302</td>
+<td>לא נמצאו פריטים חדשים ותקינים בקובץ היבוא.</td>
+</tr>
+<tr>
+<td>2305</td>
+<td>קובץ לא תקין או גדול מ 5M.</td>
+</tr>
+<tr>
+<td>2400</td>
+<td>לא ניתן לסגור מסמך שאינו פתוח.</td>
+</tr>
+<tr>
+<td>2401</td>
+<td>לא ניתן לפתוח מסמך שאינו סגור ידנית.</td>
+</tr>
+<tr>
+<td>2402</td>
+<td>שדה {ids} לא נשלח או לא תקין.</td>
+</tr>
+<tr>
+<td>2403</td>
+<td>סוג מסמך לא נשלח או אינו נתמך עבור סוג עסק זה.</td>
+</tr>
+<tr>
+<td>2404</td>
+<td>Invalid or missing {linkType} field. Can be only (copy|cancel|link).</td>
+</tr>
+<tr>
+<td>2405</td>
+<td>התאריך שנבחר עתידי או מוקדם מדי לסוג מסמך זה.</td>
+</tr>
+<tr>
+<td>2406</td>
+<td>ערך שפה לא תקין.</td>
+</tr>
+<tr>
+<td>2407</td>
+<td>ערך קוד מטבע לא תקין.</td>
+</tr>
+<tr>
+<td>2408</td>
+<td>תאריך לתשלום עד לא תקין.</td>
+</tr>
+<tr>
+<td>2409</td>
+<td>סוג מע&quot;מ לא תקין.</td>
+</tr>
+<tr>
+<td>2410</td>
+<td>שדה לקוח {client} חסר.</td>
+</tr>
+<tr>
+<td>2411</td>
+<td>לקוח לא קיים.</td>
+</tr>
+<tr>
+<td>2412</td>
+<td>חשבונית עצמית יכולה להיות מופקת רק עם סוג חשבונית מס.</td>
+</tr>
+<tr>
+<td>2413</td>
+<td>נא למלא לפחות שירות או פריט אחד.</td>
+</tr>
+<tr>
+<td>2414</td>
+<td>סכום תשלום לא תקין. צריך להיות מספר עשרוני.</td>
+</tr>
+<tr>
+<td>2415</td>
+<td>תיאור שורה לא יכול להיות ריק.</td>
+</tr>
+<tr>
+<td>2416</td>
+<td>סכום מסמך לא תקין. צריך להיות שונה מאפס.</td>
+</tr>
+<tr>
+<td>2417</td>
+<td>סכום מסמך לא תקין. צריך להיות גדול מאפס.</td>
+</tr>
+<tr>
+<td>2418</td>
+<td>סכום מסמך לא תקין. צריך להיות גדול או שווה לאפס.</td>
+</tr>
+<tr>
+<td>2419</td>
+<td>נא למלא לפחות שורת תקבולים אחת.</td>
+</tr>
+<tr>
+<td>2420</td>
+<td>Invalid discount type. Can be 'sum' or 'percentage'.</td>
+</tr>
+<tr>
+<td>2421</td>
+<td>קוד סוג תשלום לא תקין.</td>
+</tr>
+<tr>
+<td>2422</td>
+<td>קיים חוסר התאמה בין סכום התקבולים לסכום התשלומים.</td>
+</tr>
+<tr>
+<td>2423</td>
+<td>סוג כרטיס אשראי לא תקין.</td>
+</tr>
+<tr>
+<td>2424</td>
+<td>קוד סוג עסקה לא תקין.</td>
+</tr>
+<tr>
+<td>2425</td>
+<td>מספר תשלומים יכול להיות רק 1-36.</td>
+</tr>
+<tr>
+<td>2426</td>
+<td>תאריך תקבול ריק, עתידי או לא תקין.</td>
+</tr>
+<tr>
+<td>2427</td>
+<td>לא ניתן לשלוח במייל מסמך שלא נחתם דיגיטלית.</td>
+</tr>
+<tr>
+<td>2428</td>
+<td>נא למלא שורת תקבולים אחת לפחות בנוסף לניכוי במקור.</td>
+</tr>
+<tr>
+<td>2429</td>
+<td>מסמך מקושר לא נמצא.</td>
+</tr>
+<tr>
+<td>2430</td>
+<td>ערך כמות צריך להיות גדול מ 1.</td>
+</tr>
+<tr>
+<td>2431</td>
+<td>כמות מירבית מותרת של שורות הכנסה / תשלום היא 200 למסמך.</td>
+</tr>
+<tr>
+<td>2432</td>
+<td>סוג עותק מסמך לא נתמך.</td>
+</tr>
+<tr>
+<td>2433</td>
+<td>סוג סטטוס הפצת מייל לא נתמך.</td>
+</tr>
+<tr>
+<td>2434</td>
+<td>ערך סכום תקבול צריך להיות שונה מ 0.</td>
+</tr>
+<tr>
+<td>2435</td>
+<td>ערך טקסט הערות לא תקין.</td>
+</tr>
+<tr>
+<td>2436</td>
+<td>ערך טקסט תחתון לא תקין.</td>
+</tr>
+<tr>
+<td>2437</td>
+<td>ערך שליחת מסמך במייל לא תקין.</td>
+</tr>
+<tr>
+<td>2500</td>
+<td>כתובת לא תקינה.</td>
+</tr>
+<tr>
+<td>2501</td>
+<td>קטגוריה חסרה.</td>
+</tr>
+<tr>
+<td>2502</td>
+<td>כותרת חסרה.</td>
+</tr>
+<tr>
+<td>2503</td>
+<td>כתובת חסרה.</td>
+</tr>
+<tr>
+<td>2504</td>
+<td>רשימת מיון ריקה.</td>
+</tr>
+<tr>
+<td>2600</td>
+<td>לא נמצא מסוף סליקה פעיל.</td>
+</tr>
+<tr>
+<td>2601</td>
+<td>קיימת בעיה בחיוב אשראי, נא ליצור קשר עם התמיכה.</td>
+</tr>
+<tr>
+<td>2602</td>
+<td>שגיאה בחיבור תוסף.</td>
+</tr>
+<tr>
+<td>2603</td>
+<td>שגיאה בחיוב כרטיס אשראי.</td>
+</tr>
+<tr>
+<td>2604</td>
+<td>ערך flow לא תקין.</td>
+</tr>
+<tr>
+<td>2605</td>
+<td>לא נשלח תוכן מסמך.</td>
+</tr>
+<tr>
+<td>2606</td>
+<td>שגיאה בשינוי סטטוס מסוף.</td>
+</tr>
+<tr>
+<td>2607</td>
+<td>סוג טוקן לא תקין.</td>
+</tr>
+<tr>
+<td>2608</td>
+<td>4 ספרות של כרטיס אשראי אינם תקינים.</td>
+</tr>
+<tr>
+<td>2609</td>
+<td>סוג מזהה עסקה לא תקין.</td>
+</tr>
+<tr>
+<td>2610</td>
+<td>סכום תשלום לא תקין. צריך להיות גדול מאפס.</td>
+</tr>
+<tr>
+<td>2611</td>
+<td>שגיאת אשראי.</td>
+</tr>
+<tr>
+<td>2612</td>
+<td>מזהה עסקה לא תקין.</td>
+</tr>
+<tr>
+<td>2613</td>
+<td>סוג סטטוס עסקה לא תקין.</td>
+</tr>
+<tr>
+<td>2614</td>
+<td>שדה מותאם אישית לא תקין.</td>
+</tr>
+<tr>
+<td>2615</td>
+<td>לא ניתן לבטל עסקה שבוטלה.</td>
+</tr>
+<tr>
+<td>2616</td>
+<td>לא ניתן לבטל עסקה, נא לבצע זיכוי.</td>
+</tr>
+<tr>
+<td>2617</td>
+<td>לא ניתן לזכות עסקה.</td>
+</tr>
+<tr>
+<td>2618</td>
+<td>לא ניתן לבטל עסקה שבוטלה.</td>
+</tr>
+<tr>
+<td>2619</td>
+<td>שדה סוג חיוב לא תקין</td>
+</tr>
+<tr>
+<td>2620</td>
+<td>בקשה הושלמה בעבר.</td>
+</tr>
+<tr>
+<td>2621</td>
+<td>לא ניתן לבטל או לזכות עסקה.</td>
+</tr>
+<tr>
+<td>2622</td>
+<td>שם בעל כרטיס לא תקין.</td>
+</tr>
+<tr>
+<td>2623</td>
+<td>תוקף כרטיס לא תקין.</td>
+</tr>
+<tr>
+<td>2624</td>
+<td>לא ניתן לזכות עסקה בסכום גדול מהסכום המקורי.</td>
+</tr>
+<tr>
+<td>2625</td>
+<td>לתוסף שנבחר אין הרשאה לשמירת כרטיסי אשראי.</td>
+</tr>
+<tr>
+<td>2626</td>
+<td>שם משלם לא תקין.</td>
+</tr>
+<tr>
+<td>2627</td>
+<td>כרטיס אשראי שמור לא קיים או לא פעיל.</td>
+</tr>
+<tr>
+<td>2700</td>
+<td>מפתח API לא תקין.</td>
+</tr>
+<tr>
+<td>2701</td>
+<td>מצב מפתח API לא תקין.</td>
+</tr>
+<tr>
+<td>2702</td>
+<td>סוג מפתח דורש הזדהות נוספת.</td>
+</tr>
+<tr>
+<td>2800</td>
+<td>קוד חשבון ריק.</td>
+</tr>
+<tr>
+<td>2801</td>
+<td>סוג ממשק לא ניתן לסנכרון.</td>
+</tr>
+<tr>
+<td>2802</td>
+<td>סוג ממשק חיצוני לא תקין.</td>
+</tr>
+<tr>
+<td>2803</td>
+<td>שגיאת התחברות לממשק חיצוני.</td>
+</tr>
+<tr>
+<td>2804</td>
+<td>שגיאת תוסף.</td>
+</tr>
+<tr>
+<td>2805</td>
+<td>תוסף לא פעיל.</td>
+</tr>
+<tr>
+<td>2900</td>
+<td>תאריך התחלה לא תקין.</td>
+</tr>
+<tr>
+<td>2901</td>
+<td>תאריך סיום לא תקין או שאינו מאפשר לפחות הפקת מסמך אחד.</td>
+</tr>
+<tr>
+<td>2902</td>
+<td>תקופת חזרה לא תקינה.</td>
+</tr>
+<tr>
+<td>2903</td>
+<td>סטטוס ריטיינר לא תקין.</td>
+</tr>
+<tr>
+<td>2904</td>
+<td>תאריך ריטיינר לא תקין.</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>שגיאה כללית.</td>
+</tr>
+<tr>
+<td>3001</td>
+<td>לא קיים כרטיס אשראי בחשבון.</td>
+</tr>
+<tr>
+<td>3002</td>
+<td>סוג המינוי שנשלח לא קיים.</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>סוג נתונים לא תקין.</td>
+</tr>
+<tr>
+<td>3003</td>
+<td>סוג פעולה לא נתמך.</td>
+</tr>
+<tr>
+<td>3004</td>
+<td>שדה אחד או יותר חסרים.</td>
+</tr>
+<tr>
+<td>3005</td>
+<td>מינוי זהה קיים בחשבון.</td>
+</tr>
+<tr>
+<td>3006</td>
+<td>מכסת ההרשמות היומית הסתיימה. נסו שוב מחר או פנו למנהל תיק הלקוח שלכם להגדלת המכסה היומית.</td>
+</tr>
+<tr>
+<td>3007</td>
+<td>מכסת החיבורים היומית הסתיימה. נסו שוב מחר או פנו למנהל תיק הלקוח שלכם להגדלת המכסה היומית.</td>
+</tr>
+<tr>
+<td>3008</td>
+<td>לא ניתן להפעיל את החיבור.</td>
+</tr>
+<tr>
+<td>3009</td>
+<td>סוג טרנזאקציה לא נתמכת.</td>
+</tr>
+<tr>
+<td>3010</td>
+<td>קיים חוב בחשבון. נא להסדיר את החוב לפני רכישת מינוי חדש.</td>
+</tr>
+<tr>
+<td>3100</td>
+<td>שם תגית ריק.</td>
+</tr>
+<tr>
+<td>3101</td>
+<td>אורך מקסימלי של תגית אפשרי עד 30 תווים.</td>
+</tr>
+<tr>
+<td>3200</td>
+<td>סוג משימה לא נתמך.</td>
+</tr>
+<tr>
+<td>3300</td>
+<td>סוג סטטוס הוצאה לא נתמך.</td>
+</tr>
+<tr>
+<td>3301</td>
+<td>סכום הוצאה לא תקין.</td>
+</tr>
+<tr>
+<td>3302</td>
+<td>סכום מע״מ בהוצאה לא תקין.</td>
+</tr>
+<tr>
+<td>3303</td>
+<td>נא לצרף קובץ עבור ההוצאה.</td>
+</tr>
+<tr>
+<td>3304</td>
+<td>סוג טיוטת הוצאה לא נתמך.</td>
+</tr>
+<tr>
+<td>3305</td>
+<td>טיוטת הוצאה מקושרת לא נמצאה.</td>
+</tr>
+<tr>
+<td>3306</td>
+<td>מספר מסמך הוצאה לא תקין.</td>
+</tr>
+<tr>
+<td>3307</td>
+<td>תאריך מסמך הוצאה לא תקין.</td>
+</tr>
+<tr>
+<td>3308</td>
+<td>סוג מסמך הוצאה לא תקין.</td>
+</tr>
+<tr>
+<td>3309</td>
+<td>לא ניתן לסווג מסמכי הכנסה של העסק כהוצאה.</td>
+</tr>
+<tr>
+<td>3310</td>
+<td>חודש דיווח לא תקין.</td>
+</tr>
+<tr>
+<td>3311</td>
+<td>נא למלא פרטי ספק.</td>
+</tr>
+<tr>
+<td>3312</td>
+<td>נא למלא פרטי סוג הוצאה.</td>
+</tr>
+<tr>
+<td>3313</td>
+<td>שדה expenseIds לא תקין.</td>
+</tr>
+<tr>
+<td>3314</td>
+<td>לא ניתן לעדכן הוצאה לאחר שדווחה.</td>
+</tr>
+<tr>
+<td>3315</td>
+<td>לא ניתן לפתוח הוצאה שלא דווחה.</td>
+</tr>
+<tr>
+<td>3316</td>
+<td>לא ניתן לסגור הוצאה שאינה פתוחה.</td>
+</tr>
+<tr>
+<td>3317</td>
+<td>סוג אמצעי התשלום של ההוצאה לא תקין.</td>
+</tr>
+<tr>
+<td>3318</td>
+<td>מיקום משרד לא תקין.</td>
+</tr>
+<tr>
+<td>3319</td>
+<td>מספר חדרים לא תקין.</td>
+</tr>
+<tr>
+<td>3320</td>
+<td>מספר רכב לא תקין.</td>
+</tr>
+<tr>
+<td>3400</td>
+<td>נא למלא כותרת לחשבון.</td>
+</tr>
+<tr>
+<td>3401</td>
+<td>שיעור הוצאה מוכרת לא תקין.</td>
+</tr>
+<tr>
+<td>3402</td>
+<td>שיעור מע״מ מוכר לא תקין.</td>
+</tr>
+<tr>
+<td>3403</td>
+<td>סוג ההוצאה לא תקין.</td>
+</tr>
+<tr>
+<td>3404</td>
+<td>קוד 6111 לא תקין.</td>
+</tr>
+<tr>
+<td>3405</td>
+<td>לא ניתן למחוק סוג הוצאה ששויכו אליו הוצאות.</td>
+</tr>
+</tbody>
+</table>
+<h3>Notes</h3>
+<blockquote>
+<p>The API is <strong>case sensitive</strong> - make sure to validate that the parameters you send are in their correct form.</p>
+</blockquote>
+<h2>Getting Started</h2>
+<h3>API Key</h3>
+<p>A user must acquire an API key (which is done within the morning by Green Invoice website and is explained in <a href="https://support.greeninvoice.co.il/kb/he/article/%D7%90%D7%99%D7%9A-%D7%9C%D7%99%D7%A6%D7%95%D7%A8-%D7%9E%D7%A4%D7%AA%D7%97%D7%95%D7%AA-api">here</a>) in-order to start using the API.</p>
+<p>Once a key is acquired the user can then start using the API key.</p>
+<h3>Subscription</h3>
+<p>API access is available exclusively for users on the <strong><code>Best</code></strong> subscription plan or higher.</p>
+<p>More info on the available subscription plans can be found in the <a href="https://www.greeninvoice.co.il/pricing">paying section</a>.</p>
+<h3>API Limitations</h3>
+<p>The average rate limit of the API is approximately <code>3 requests per second</code>.
+Too many requests will result in status code <code>429</code> (Too Many Requests) given by the server.
+CORS is not supported - you should not use this API from a browser.</p>
+<h2>Support</h2>
+<p>The tech support email is solely for support in matters of the API documentation.</p>
+<p>If you have any general question or proposal that requires support please contact the support team instead in <a href="https://www.greeninvoice.co.il/contact">here</a>.</p>
+<p>Before contacting the tech support please read the API documentation very carefully.</p>
+<p>If you still haven’t found an answer to your question or if you think there is a lack in documentation in one of the sections, please contact us at <a href="mailto:support@morning.co">support@morning.co</a>.</p>
+<p>Once submitting a question, please make sure to submit all the details for your question, so that we can provide the best answer possible.</p>
+<p>If the question you are submitting is related to a specific API endpoint, please make sure to also provide us with the data you sent such as - request endpoint, request type used, headers, request parameters, as well as response status and the response itself that was given by the server.</p>
+<h2>Webhooks (Callback URLs)</h2>
+<p>Some parameters in our API send webhooks (also called Callback URLs, Notification URL) to a defined URL.</p>
+<p>Webhooks is a way for third party systems to get notified regarding an event that occurred in our system.</p>
+<p>Once you as a third party system have subscribed to listen to a specific event (e.g.: a document has finished processing), and that event occurred - your subscribed callback URL will be notified with information regarding the event.</p>
+<blockquote>
+<p><strong>NOTE:</strong>
+<br>
+Due to our system state-less characteristics we do not have a static IP that you can whitelist.</p>
+</blockquote>
+<h3>Inspecting Webhooks for Local Development</h3>
+<p>You might have noticed that receiving these webhooks to a local development machine is impossible due to your local development machine not being visible in the public net.</p>
+<p>There is an easy fix for that - using interceptor websites.</p>
+<p>Websites such as <a href="https://webhook.site">https://webhook.site</a> can intercept a webhook from our servers and let you inspect the received information.</p>
+<p>To use them - just create a URL and assign the callback parameter with the given URL. Once our servers have finished processing your request, they will send a webhook notification to that interceptor callback URL, and you - will be able to inspect the data, just as shown in the image below:</p>
+<p><img src="https://cdn.greeninvoice.co.il/files/ugc/0/b/8/0b80da6e300f45078fdc06e5682caf9b.png" alt="Inspecting Webhooks"></p>
+<p>An alternative, better solution is to use <a href="https://ngrok.com/">ngrok</a>, which is a bit more advanced so we will not cover it on this guide.</p>
