@@ -160,7 +160,7 @@ class ReplSkin:
         top = self._c(_DARK_GRAY, f"{_TL}{_H_LINE * inner}{_TR}")
         bot = self._c(_DARK_GRAY, f"{_BL}{_H_LINE * inner}{_BR}")
 
-        # Title:  ◆  cli-anything · Shotcut
+        # Title:  ◆  cli-anything · morning-cli
         icon = self._c(_CYAN + _BOLD, "◆")
         brand = self._c(_CYAN + _BOLD, "cli-anything")
         dot = self._c(_DARK_GRAY, "·")
@@ -197,7 +197,7 @@ class ReplSkin:
 
         Args:
             project_name: Current project name (empty if none open).
-            modified: Whether the project has unsaved changes.
+            modified: Whether the project has uncommitted changes.
             context: Optional extra context to show in prompt.
 
         Returns:
@@ -461,7 +461,7 @@ class ReplSkin:
         Args:
             pt_session: A prompt_toolkit PromptSession (or None).
             project_name: Current project name.
-            modified: Whether project has unsaved changes.
+            modified: Whether project has uncommitted changes.
             context: Optional context string.
 
         Returns:

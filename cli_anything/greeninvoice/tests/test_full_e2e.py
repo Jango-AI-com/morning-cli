@@ -144,9 +144,11 @@ class TestOfflineCLI:
             assert group in r.stdout, f"group {group!r} missing from --help"
 
     def test_version_returns_zero(self, offline_env):
+        from cli_anything.greeninvoice import __version__
+
         r = run(["--version"], env=offline_env)
         assert r.returncode == 0
-        assert "0.1.0" in r.stdout
+        assert __version__ in r.stdout
 
     def test_session_show_json_envelope(self, offline_env):
         r = run(["--json", "session", "show"], env=offline_env)
