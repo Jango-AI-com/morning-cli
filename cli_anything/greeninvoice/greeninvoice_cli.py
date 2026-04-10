@@ -342,6 +342,13 @@ def auth_refresh(ctx: click.Context) -> None:
     help="API Key Secret (skips the secret prompt — avoid in shell history).",
 )
 @click.option(
+    "--credentials-file",
+    "creds_file",
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    default=None,
+    help='Read credentials from a JSON file {"id":"...","secret":"...","env":"sandbox"}.',
+)
+@click.option(
     "--non-interactive",
     is_flag=True,
     help="Fail instead of prompting if any value is missing.",
@@ -357,50 +364,81 @@ def auth_init(
     env_opt: str | None,
     id_opt: str | None,
     secret_opt: str | None,
+    creds_file: Path | None,
     non_interactive: bool,
     force: bool,
 ) -> None:
     """Interactive setup wizard — connect your morning account.
 
-    Walks a first-time user through:
+    \b
+    Walks you through:
       1. Choosing sandbox vs production
       2. Opening the morning dashboard to create API keys
-      3. Pasting the id + secret
+      3. Entering the id + secret (secret input is hidden)
       4. Verifying them live against the real API
       5. Saving credentials to ~/.greeninvoice/credentials.json (mode 0600)
 
+    \b
+    Security options (avoid pasting secrets in chat/logs):
+      --credentials-file path.json   Read keys from a file you prepare
+      Environment variables           MORNING_API_KEY_ID / _SECRET
+
     Re-run at any time to switch environments or rotate keys.
     """
+    from rich.console import Console
+    from rich.panel import Panel
+    from rich.text import Text
+
     cli_ctx = _as_cli_context(ctx)
-    skin = cli_ctx.skin
     json_mode = cli_ctx.json_mode
+    console = Console()
 
     def say(text: str = "") -> None:
         if not json_mode:
-            click.echo(text)
+            console.print(text)
 
-    # Step 0: guard against accidental overwrite
+    # ── Load from --credentials-file if given ──
+    if creds_file:
+        try:
+            creds_data = json.loads(creds_file.read_text())
+        except (json.JSONDecodeError, OSError) as exc:
+            raise click.UsageError(f"Cannot read credentials file: {exc}") from exc
+        id_opt = id_opt or creds_data.get("id")
+        secret_opt = secret_opt or creds_data.get("secret")
+        env_opt = env_opt or creds_data.get("env")
+
+    # ── Step 0: guard against accidental overwrite ──
     if CREDENTIALS_PATH.exists() and not force:
         say()
-        skin.warning(f"credentials already exist at {CREDENTIALS_PATH}")
+        console.print(
+            f"  [yellow]![/yellow] Credentials already exist at "
+            f"[dim]{CREDENTIALS_PATH}[/dim]"
+        )
         if non_interactive:
             ctx.exit(emit_error(
-                ctx,
-                "auth.init",
+                ctx, "auth.init",
                 GreenInvoiceError(
                     f"credentials.json already exists at {CREDENTIALS_PATH}; "
                     "pass --force to overwrite."
                 ),
             ))
-        if not click.confirm("Overwrite?", default=False):
+        if not click.confirm("  Overwrite?", default=False):
             emit(ctx, "auth.init", {"cancelled": True})
             return
 
-    # Step 1: environment
-    say()
-    say("  morning-cli setup wizard")
-    say("  " + "─" * 26)
-    say()
+    # ── Banner ──
+    if not json_mode:
+        console.print()
+        console.print(Panel(
+            Text.from_markup(
+                "[bold cyan]morning-cli[/bold cyan] setup wizard\n"
+                "[dim]Connect your morning account in 4 steps[/dim]"
+            ),
+            border_style="cyan",
+            padding=(1, 4),
+        ))
+
+    # ── Step 1: environment ──
     env = (env_opt or "").lower() or None
     if env is None:
         if non_interactive:
@@ -408,32 +446,50 @@ def auth_init(
                 ctx, "auth.init",
                 GreenInvoiceError("--env is required in --non-interactive mode"),
             ))
-        say("  Step 1/4 — choose environment")
-        say("    sandbox    (recommended — safe, no real money)")
-        say("    production (live data)")
-        env = click.prompt(
-            "  env",
-            type=click.Choice(["sandbox", "production"], case_sensitive=False),
-            default="sandbox",
+        say()
+        console.print("  [bold]Step 1/4[/bold] [dim]—[/dim] Choose environment\n")
+        console.print("    [green][1][/green]  sandbox     [dim]— recommended, safe, no real money[/dim]")
+        console.print("    [yellow][2][/yellow]  production  [dim]— live business data[/dim]")
+        say()
+        choice = click.prompt(
+            "  Enter 1 or 2",
+            type=click.Choice(["1", "2"], case_sensitive=False),
+            default="1",
             show_default=True,
-        ).lower()
+        )
+        env = "sandbox" if choice == "1" else "production"
 
     base_url = ENVIRONMENTS[env]
     dashboard_url = auth_core.DASHBOARD_URLS[env]
+    env_label = (
+        "[green]sandbox[/green]" if env == "sandbox"
+        else "[yellow]production[/yellow]"
+    )
 
-    # Step 2: point the user to the right page
-    say()
-    say(f"  Step 2/4 — get your API keys ({env})")
-    say("  Open this URL in your browser and log in:")
-    say()
-    say(f"    {dashboard_url}")
-    say()
-    say("  Then: Settings → Advanced → Developers → 'יצירת מפתח API'")
-    say("  Copy the ID and the Secret. The Secret is shown ONCE — save it now.")
-    say()
+    if not json_mode:
+        console.print(f"\n  Selected: {env_label}\n")
 
-    # Step 3: collect credentials
-    say("  Step 3/4 — paste your credentials")
+    # ── Step 2: point the user to the right page ──
+    say()
+    console.print(f"  [bold]Step 2/4[/bold] [dim]—[/dim] Get your API keys ({env})\n")
+    console.print("  Open this URL in your browser and log in:\n")
+    console.print(f"  [bold blue underline]{dashboard_url}[/bold blue underline]\n")
+    console.print("  Navigate to: [bold]Settings > Advanced > Developers[/bold]")
+    console.print("  Click [bold]\"Create API Key\"[/bold].")
+    console.print("  You will see an [bold]ID[/bold] and a [bold]Secret[/bold] — "
+                   "the Secret is shown [underline]once[/underline].\n")
+
+    if not (id_opt and secret_opt):
+        click.prompt("  Press Enter when ready", default="", show_default=False)
+
+    # ── Step 3: collect credentials ──
+    say()
+    console.print("  [bold]Step 3/4[/bold] [dim]—[/dim] Enter your credentials\n")
+
+    if not (id_opt and secret_opt):
+        console.print("  [dim]Tip: The Secret is hidden as you type — this is normal.[/dim]")
+        console.print("  [dim]Credentials are saved locally with 0600 permissions.[/dim]\n")
+
     api_key_id = id_opt
     api_key_secret = secret_opt
     if api_key_id is None:
@@ -457,9 +513,10 @@ def auth_init(
             GreenInvoiceError("API Key ID and Secret must both be non-empty."),
         ))
 
-    # Step 4: verify live
+    # ── Step 4: verify live ──
     say()
-    say("  Step 4/4 — verifying against the real API...")
+    console.print("  [bold]Step 4/4[/bold] [dim]—[/dim] Verifying...\n")
+
     try:
         info = auth_core.verify_credentials(
             api_key_id=api_key_id,
@@ -467,22 +524,20 @@ def auth_init(
             env=env,
         )
     except GreenInvoiceAPIError as exc:
-        # Decoded Hebrew error envelope
         code = emit_error(ctx, "auth.init", exc)
         say()
-        skin.error("credentials NOT saved.")
+        console.print("  [red bold]Verification failed[/red bold] — credentials NOT saved.\n")
         if exc.http_status == 401:
-            skin.info("Double-check the ID and Secret — secrets are shown once.")
+            console.print("  [dim]Double-check the ID and Secret.[/dim]")
+            console.print("  [dim]Secrets are shown only once — you may need to create a new key.[/dim]")
         elif exc.http_status == 403:
-            skin.info(
-                "Your morning subscription may not include the API module. "
-                "Check your plan — Best and above typically include it."
-            )
+            console.print("  [dim]Your morning subscription may not include the API module.[/dim]")
+            console.print("  [dim]Check your plan — 'Best' and above typically include it.[/dim]")
         ctx.exit(code)
     except Exception as exc:  # noqa: BLE001
         ctx.exit(emit_error(ctx, "auth.init", exc))
 
-    # Step 5: persist
+    # ── Step 5: persist ──
     try:
         written_path = auth_core.write_credentials_file(
             api_key_id=api_key_id,
@@ -492,8 +547,7 @@ def auth_init(
     except Exception as exc:  # noqa: BLE001
         ctx.exit(emit_error(ctx, "auth.init", exc))
 
-    # Step 6: seed the session with the verified token so the user can go
-    # straight to work without a separate `auth login`.
+    # Seed session so user can start working immediately
     cli_ctx.session["version"] = 1
     cli_ctx.session["env"] = env
     cli_ctx.session["base_url"] = base_url
@@ -506,7 +560,7 @@ def auth_init(
     session_core.record_history(cli_ctx.session, "auth.init", env=env)
     cli_ctx.persist()
 
-    # Success output
+    # ── Success output ──
     if json_mode:
         emit(
             ctx,
@@ -522,18 +576,22 @@ def auth_init(
         )
         return
 
-    skin.success("Authenticated successfully")
-    if info.get("business_name"):
-        skin.status("business", info["business_name"])
-    if info.get("business_id"):
-        skin.status("business_id", info["business_id"])
-    skin.status("env", env)
-    skin.status("saved to", str(written_path))
-    say()
-    say("  All set. Try:")
-    say("    morning-cli business current")
-    say("    morning-cli --json document types --lang he")
-    say("    morning-cli                      # interactive REPL")
+    biz_name = info.get("business_name") or "—"
+    console.print(Panel(
+        Text.from_markup(
+            f"[green bold]Connected successfully![/green bold]\n\n"
+            f"  [bold]Business:[/bold]  {biz_name}\n"
+            f"  [bold]Env:[/bold]       {env}\n"
+            f"  [bold]Saved to:[/bold]  [dim]{written_path}[/dim]\n\n"
+            f"[dim]Try these commands:[/dim]\n"
+            f"  [cyan]morning-cli[/cyan] business current\n"
+            f"  [cyan]morning-cli[/cyan] --json document types\n"
+            f"  [cyan]morning-cli[/cyan]                    [dim]# interactive REPL[/dim]"
+        ),
+        title="[bold green]All set[/bold green]",
+        border_style="green",
+        padding=(1, 3),
+    ))
     say()
 
 
