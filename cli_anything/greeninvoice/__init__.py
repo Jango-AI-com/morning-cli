@@ -1,4 +1,4 @@
-"""morning-cli — agent-native CLI for the morning by Green Invoice REST API.
+"""morning-cli — agent-native CLI for the morning invoicing REST API.
 
 Built by JangoAI (https://jango-ai.com) with the cli-anything methodology.
 The Python namespace ``cli_anything.greeninvoice`` is intentional and follows

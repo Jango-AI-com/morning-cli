@@ -58,7 +58,7 @@ def accounting_classifications(b: GreenInvoiceBackend) -> Any:
 def get_file_upload_url(b: GreenInvoiceBackend) -> Any:
     """GET /expenses/file — Step 1: get a one-time upload URL.
 
-    Green Invoice uses a 3-step expense-file flow:
+    morning uses a 3-step expense-file flow:
     1. GET /expenses/file → returns a signed upload URL + file token
     2. PUT the raw bytes to the returned URL (outside this API)
     3. POST /expenses/example with the token to create a draft

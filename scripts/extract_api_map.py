@@ -47,7 +47,7 @@ SPEC_PATH = pathlib.Path("spec/greeninvoice.api-elements.json")
 MAP_PATH = pathlib.Path("spec/api-map.json")
 DESC_PATH = pathlib.Path("spec/api-description.html")
 
-# Apiary public description endpoint for morning by Green Invoice.
+# Apiary public description endpoint for morning (invoicing platform).
 # Returns an API Elements JSON dump of the full parsed blueprint.
 APIARY_SPEC_URL = (
     "https://jsapi.apiary.io/apis/greeninvoice/api-description-document"

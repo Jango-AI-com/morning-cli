@@ -33,7 +33,7 @@ def update(b: GreenInvoiceBackend, payload: dict) -> Any:
 def upload_file(b: GreenInvoiceBackend, kind: str, file_path: Path) -> Any:
     """POST /businesses/file — upload business file (logo, signature, stamp).
 
-    ``kind`` is a Green Invoice file type code (e.g. logo=0, signature=1, stamp=2).
+    ``kind`` is a morning file type code (e.g. logo=0, signature=1, stamp=2).
     """
     path = Path(file_path)
     if not path.exists():

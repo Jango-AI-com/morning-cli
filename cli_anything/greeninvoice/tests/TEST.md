@@ -11,7 +11,7 @@ test results **after** execution (HARNESS Phase 6).
 | `test_full_e2e.py` | E2E — subprocess the installed console script, hit real sandbox API | ~8 |
 
 The real-software rule (HARNESS) maps here to: the E2E suite **must** hit the
-real Green Invoice sandbox at `https://sandbox.d.greeninvoice.co.il/api/v1/`.
+real morning sandbox at `https://sandbox.d.greeninvoice.co.il/api/v1/`.
 If credentials are absent, E2E tests fail loudly with a clear skip-reason —
 there is no graceful Pillow-style fallback.
 
@@ -108,7 +108,7 @@ create an invoice, confirm it appears in search results, fetch its PDF link.
 - The download links response contains at least one URL
 - Session file contains cached token, business_id context, and history entries
 
-**Cleanup:** Created documents cannot be deleted in Green Invoice once issued,
+**Cleanup:** Created documents cannot be deleted in morning once issued,
 so the test creates **drafts** (the API supports unpublished drafts).
 Created clients are soft-deletable — the test calls `client delete` in a
 teardown.

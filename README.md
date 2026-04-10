@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2563eb,50:7c3aed,100:06b6d4&height=220&section=header&text=morning-cli&fontSize=70&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Agent-native%20CLI%20for%20morning%20by%20Green%20Invoice&descSize=18&descAlignY=55&descAlign=50" alt="morning-cli banner" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2563eb,50:7c3aed,100:06b6d4&height=220&section=header&text=morning-cli&fontSize=70&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Agent-native%20CLI%20for%20the%20morning%20invoicing%20API&descSize=18&descAlignY=55&descAlign=50" alt="morning-cli banner" width="100%"/>
 </p>
 
 <p align="center">
@@ -17,6 +17,14 @@
 <p align="center">
   <sub>Built by <a href="https://jango-ai.com"><b>JangoAI</b></a> using the <a href="https://github.com/HKUDS/CLI-Anything">cli-anything</a> methodology &nbsp;|&nbsp; <a href="README.he.md">README בעברית</a></sub>
 </p>
+
+---
+
+## Why this exists
+
+I'm Maor, a solo developer running [JangoAI](https://jango-ai.com) — a small AI automation studio in Israel. I use morning's API daily for my own business and my clients', and I got tired of writing the same `httpx` + JWT boilerplate in every project. So I built a proper CLI around it.
+
+This started as a personal tool, but there's no reason to keep it private — if you work with morning's API, you'll save time with this. I'm sharing it with the Israeli dev community because I think we deserve better tooling for our local platforms. If it helps you, I'd love to hear about it.
 
 ---
 
@@ -143,7 +151,7 @@ Every `--json` command returns a consistent envelope:
 {"ok": true, "op": "document.create", "data": {"id": "...", "number": 12345}}
 ```
 
-Errors include the Green Invoice `errorCode` and Hebrew `errorMessage`:
+Errors include the morning `errorCode` and Hebrew `errorMessage`:
 
 ```json
 {"ok": false, "op": "document.create", "error": {"code": 1110, "message": "מחיר לא תקין.", "http_status": 400}}
@@ -157,7 +165,7 @@ Errors include the Green Invoice `errorCode` and Hebrew `errorMessage`:
 | `3` | Server error (5xx) / network |
 
 <details>
-<summary><b>Common Green Invoice error codes</b></summary>
+<summary><b>Common morning API error codes</b></summary>
 
 | Code | Meaning |
 |---|---|
@@ -183,8 +191,6 @@ Errors include the Green Invoice `errorCode` and Hebrew `errorMessage`:
 | `MORNING_API_KEY_SECRET` | API key secret | — |
 | `MORNING_ENV` | `sandbox` or `production` | `sandbox` |
 | `MORNING_BASE_URL` | Override base URL | auto |
-
-<sub>Legacy prefix <code>GREENINVOICE_*</code> is also supported.</sub>
 
 ---
 
@@ -234,7 +240,7 @@ If you're an agent reading this, start with the SKILL.md.
 
 Built following the [cli-anything](https://github.com/HKUDS/CLI-Anything) 7-phase pipeline:
 
-1. **Codebase analysis** — parsed 1.4MB Apiary spec into 66-endpoint map
+1. **Codebase analysis** — parsed the Apiary spec into a 66-endpoint map
 2. **Architecture** — REPL-first, `--json` envelopes, session locking, sandbox-first
 3. **Implementation** — PEP 420 namespace package `cli_anything.greeninvoice`
 4. **Test planning** — TEST.md written before tests
@@ -267,7 +273,7 @@ See [open issues](https://github.com/Jango-AI-com/morning-cli/issues) for good f
 
 [Website](https://jango-ai.com) · [GitHub](https://github.com/Jango-AI-com) · [morning API docs](https://www.greeninvoice.co.il/api-docs)
 
-<sub>MIT License · morning-cli is a community project and is not affiliated with morning (Green Invoice) Ltd.</sub>
+<sub>MIT License · morning-cli is a community project and is not officially affiliated with morning Ltd.</sub>
 
 </div>
 

@@ -11,16 +11,18 @@ Python package layout follows PEP 420 namespace packages under
 ``cli_anything/greeninvoice`` so multiple ``cli-anything-<software>``
 packages can coexist in the same environment.
 """
+from pathlib import Path
+
 from setuptools import find_namespace_packages, setup
 
 setup(
     name="morning-cli",
     version="0.1.0",
     description=(
-        "Agent-native CLI for the morning by Green Invoice REST API — "
+        "Agent-native CLI for the morning invoicing REST API — "
         "66 endpoints, JSON envelopes, sandbox-first, built by JangoAI."
     ),
-    long_description=open("README.md", encoding="utf-8").read(),
+    long_description=Path("README.md").read_text(encoding="utf-8"),
     long_description_content_type="text/markdown",
     author="JangoAI",
     author_email="hello@jango-ai.com",

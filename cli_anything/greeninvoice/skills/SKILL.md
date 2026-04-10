@@ -1,7 +1,7 @@
 ---
 name: morning-cli
 description: >-
-  Agent-native CLI for the morning by Green Invoice REST API. 66 endpoints
+  Agent-native CLI for the morning by morning REST API. 66 endpoints
   across 10 resource groups (businesses, clients, suppliers, items, documents,
   expenses, payments, partners, tools) with --json machine-readable envelopes,
   persistent session, automatic JWT refresh, sandbox-first defaults, and an
@@ -10,7 +10,7 @@ description: >-
 
 # morning-cli
 
-Command-line interface for **morning by Green Invoice** (Israel's leading
+Command-line interface for **morning by morning** (Israel's leading
 invoicing SaaS), built to be used by AI agents and humans alike. Wraps the
 real REST API at `https://api.greeninvoice.co.il/api/v1/` — it does not
 reimplement any invoice or tax logic.
@@ -75,7 +75,7 @@ consistent envelope:
 {"ok": true, "op": "document.create", "data": {"id": "...", "number": 12345}}
 ```
 
-Errors carry the Green Invoice `errorCode` and Hebrew `errorMessage`:
+Errors carry the morning `errorCode` and Hebrew `errorMessage`:
 ```json
 {"ok": false, "op": "document.create", "error": {"code": 1110, "message": "מחיר לא תקין.", "http_status": 400}}
 ```
@@ -153,7 +153,7 @@ morning-cli --json document download <document_id>
 7. **Documents cannot be deleted** once issued. Use drafts and `document preview` for tests.
 8. **Session file lives at `~/.greeninvoice/session.json`** (mode 0600) — cached JWT and mutation history.
 
-## Common Green Invoice error codes
+## Common morning error codes
 
 | Code | Meaning |
 |---|---|

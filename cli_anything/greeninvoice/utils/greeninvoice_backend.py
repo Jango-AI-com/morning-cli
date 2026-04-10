@@ -1,14 +1,14 @@
-"""HTTP backend for the morning by Green Invoice REST API.
+"""HTTP backend for the morning invoicing REST API.
 
 This module is the cli-anything "backend" — the real-software dependency per
 HARNESS.md. For GUI harnesses the backend shells out to an installed binary;
-here it makes authenticated HTTPS requests to the real Green Invoice API.
+here it makes authenticated HTTPS requests to the real morning API.
 
 Responsibilities:
 - Load credentials (env > credentials.json > error)
 - Acquire and cache JWT tokens via ``POST /account/token``
 - Transparently refresh on 401
-- Decode Green Invoice error envelopes into ``GreenInvoiceAPIError``
+- Decode morning error envelopes into ``GreenInvoiceAPIError``
 - Handle file uploads via multipart
 - Retry transient failures (429, 5xx) with exponential backoff
 """
@@ -74,7 +74,7 @@ class CredentialsNotFoundError(GreenInvoiceError):
 
 
 class GreenInvoiceAPIError(GreenInvoiceError):
-    """API returned a non-2xx response with a Green Invoice error envelope."""
+    """API returned a non-2xx response with a morning error envelope."""
 
     def __init__(
         self,
@@ -156,7 +156,7 @@ def find_credentials(env_override: str | None = None) -> dict[str, str]:
 
 
 class GreenInvoiceBackend:
-    """Thin HTTP client for the morning by Green Invoice REST API.
+    """Thin HTTP client for the morning invoicing REST API.
 
     Usage::
 
@@ -186,6 +186,12 @@ class GreenInvoiceBackend:
                 "User-Agent": "morning-cli/0.1 (+https://jango-ai.com; "
                 "built with cli-anything)",
             },
+        )
+
+    def __repr__(self) -> str:
+        return (
+            f"<GreenInvoiceBackend base_url={self.base_url!r} "
+            f"api_key_id={self.api_key_id!r} secret=***>"
         )
 
     # ---- Factory ----

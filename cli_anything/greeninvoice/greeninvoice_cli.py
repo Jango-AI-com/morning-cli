@@ -145,10 +145,14 @@ def load_payload(data: str | None, file: Path | None) -> dict:
     """Parse a --data '...' JSON string or --file path into a dict."""
     if data and file:
         raise click.UsageError("Use --data OR --file, not both")
-    if file:
-        return json.loads(Path(file).read_text())
-    if data:
-        return json.loads(data)
+    try:
+        if file:
+            return json.loads(Path(file).read_text())
+        if data:
+            return json.loads(data)
+    except json.JSONDecodeError as exc:
+        source = f"--file {file}" if file else "--data"
+        raise click.UsageError(f"Invalid JSON in {source}: {exc}") from exc
     return {}
 
 
@@ -171,7 +175,7 @@ def load_payload(data: str | None, file: Path | None) -> dict:
 @click.version_option(__version__, prog_name="morning-cli")
 @click.pass_context
 def cli(ctx: click.Context, json_mode: bool, env: str | None) -> None:
-    """morning-cli — agent-native CLI for the morning (Green Invoice) REST API.
+    """morning-cli — agent-native CLI for the morning invoicing REST API.
 
     Built by JangoAI (https://jango-ai.com) using the cli-anything methodology.
     First-time setup: run `morning-cli auth init`.

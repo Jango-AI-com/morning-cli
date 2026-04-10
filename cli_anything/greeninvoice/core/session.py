@@ -6,12 +6,18 @@ rewrite, fsync, release.
 """
 from __future__ import annotations
 
-import fcntl
 import json
 import os
 import time
 from pathlib import Path
 from typing import Any
+
+try:
+    import fcntl
+except ImportError:
+    # Windows — fcntl is Unix-only. File locking is a nice-to-have safety
+    # net against concurrent writes; on Windows we skip it gracefully.
+    fcntl = None  # type: ignore[assignment]
 
 SESSION_DIR = Path.home() / ".greeninvoice"
 SESSION_PATH = SESSION_DIR / "session.json"
@@ -83,7 +89,8 @@ def save_session(session: dict[str, Any], path: Path | None = None) -> None:
 
     payload = json.dumps(session, ensure_ascii=False, indent=2)
     with open(path, "r+", encoding="utf-8") as fh:
-        fcntl.flock(fh.fileno(), fcntl.LOCK_EX)
+        if fcntl is not None:
+            fcntl.flock(fh.fileno(), fcntl.LOCK_EX)
         try:
             fh.seek(0)
             fh.truncate(0)
@@ -91,7 +98,8 @@ def save_session(session: dict[str, Any], path: Path | None = None) -> None:
             fh.flush()
             os.fsync(fh.fileno())
         finally:
-            fcntl.flock(fh.fileno(), fcntl.LOCK_UN)
+            if fcntl is not None:
+                fcntl.flock(fh.fileno(), fcntl.LOCK_UN)
 
 
 def record_history(session: dict[str, Any], op: str, **details: Any) -> None:
