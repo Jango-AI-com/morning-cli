@@ -11,6 +11,7 @@ Built by JangoAI with the cli-anything methodology. Implements HARNESS Phase 3:
 from __future__ import annotations
 
 import json
+import os
 import shlex
 import sys
 import traceback
@@ -396,6 +397,36 @@ def auth_init(
     def say(text: str = "") -> None:
         if not json_mode:
             console.print(text)
+
+    # ── Detect AI agent environments (Claude Code, Cursor, etc.) ──
+    in_agent = bool(
+        os.environ.get("CLAUDECODE")
+        or os.environ.get("CURSOR_SESSION_ID")
+        or os.environ.get("CODEX")
+    )
+
+    # If running inside an AI agent and no pre-supplied credentials,
+    # refuse interactive secret input — it would leak into the chat log.
+    if in_agent and not (id_opt and secret_opt) and not creds_file:
+        say()
+        console.print(Panel(
+            Text.from_markup(
+                "[yellow bold]Agent environment detected[/yellow bold]\n\n"
+                "Entering your API Secret here would expose it in the\n"
+                "conversation log. Instead, run this in [bold]your own terminal[/bold]:\n\n"
+                "  [cyan]morning-cli auth init[/cyan]\n\n"
+                "The wizard will guide you through setup with hidden input.\n"
+                "Once done, come back here — the CLI will work automatically.\n\n"
+                "[dim]Alternatively, prepare a credentials file:[/dim]\n"
+                '  [dim]echo \'{"id":"...","secret":"...","env":"sandbox"}\' > /tmp/creds.json[/dim]\n'
+                "  [dim]chmod 600 /tmp/creds.json[/dim]\n"
+                "  [cyan]morning-cli auth init --credentials-file /tmp/creds.json[/cyan]"
+            ),
+            title="[yellow]Security notice[/yellow]",
+            border_style="yellow",
+            padding=(1, 3),
+        ))
+        ctx.exit(1)
 
     # ── Load from --credentials-file if given ──
     if creds_file:

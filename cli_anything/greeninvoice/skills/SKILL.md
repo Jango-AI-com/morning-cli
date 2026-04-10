@@ -144,6 +144,35 @@ morning-cli --json document download <document_id>
 
 ## Agent guidance — read me before using
 
+### Credential setup (IMPORTANT — read first)
+
+**NEVER run `morning-cli auth init` through your Bash/shell tool.**
+The interactive wizard asks for an API Secret — if you run it through a tool,
+the secret will appear in the conversation log. The CLI detects agent
+environments (CLAUDECODE, CURSOR_SESSION_ID, CODEX) and will refuse to accept
+interactive secrets, showing a security notice instead.
+
+**Instead, guide the user through these steps:**
+
+1. Check if credentials already exist:
+   ```bash
+   morning-cli --json auth whoami
+   ```
+   If this returns `"ok": true`, credentials are configured — skip to usage.
+
+2. If credentials are missing, tell the user:
+   > Run `morning-cli auth init` in **your own terminal** (not here).
+   > The wizard will walk you through creating API keys and saving them securely.
+   > Once you're done, come back and I can use the CLI for you.
+
+3. After the user confirms setup is done, verify:
+   ```bash
+   morning-cli --json auth whoami
+   morning-cli --json business current
+   ```
+
+### Usage rules
+
 1. **Always pass `--json`** for machine consumption. Without it the CLI prints pretty output that is harder to parse.
 2. **Default env is sandbox.** To operate on real production data pass `--env production` or set `MORNING_ENV=production`.
 3. **Token refresh is automatic.** On a 401 the CLI re-acquires the JWT and retries once — you don't need to handle token expiry yourself.
