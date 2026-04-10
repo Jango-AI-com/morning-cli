@@ -6,6 +6,6 @@ PEP 420 namespace packaging so multiple ``cli-anything-<software>`` harnesses
 can coexist. User-facing name on PyPI and on PATH: ``morning-cli``.
 """
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __author__ = "JangoAI"
 __url__ = "https://jango-ai.com"

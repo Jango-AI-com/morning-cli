@@ -17,7 +17,7 @@ from setuptools import find_namespace_packages, setup
 
 setup(
     name="morning-cli",
-    version="0.1.1",
+    version="0.1.2",
     description=(
         "Agent-native CLI for the morning invoicing REST API — "
         "66 endpoints, JSON envelopes, sandbox-first, built by JangoAI."
